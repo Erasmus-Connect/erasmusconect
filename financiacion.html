@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financiación - Erasmus Connect US</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .timeline-full {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .calendar-card {
+            background: var(--white);
+            border-left: 8px solid var(--us-red);
+            padding: 25px 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .calendar-card .card-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .calendar-card .icon-box {
+            min-width: 60px;
+            text-align: center;
+            color: var(--us-red);
+        }
+
+        .calendar-card h3 {
+            margin: 0 0 5px 0;
+            color: var(--us-red);
+            font-size: 1.4rem;
+        }
+
+        .calendar-card p {
+            color: #666;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .funding-tag {
+            background: #fdf2f2;
+            color: var(--us-red);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+            .calendar-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .calendar-card .card-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-university"></i>
+                Erasmus Connect <span>Universidad de Sevilla</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="destinos.html">Destinos</a></li>
+                    <li><a href="convalidaciones.html">Convalidaciones</a></li>
+                    <li><a href="foro.html">Foro</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 100%; padding: 0 40px;">
+        <div style="margin-top:40px;">
+            <a href="index.html" class="btn btn-secondary" style="margin-bottom: 20px;"><i
+                    class="fas fa-arrow-left"></i> Volver a Inicio</a>
+            <h2 class="section-title">Financiación y Becas de Movilidad 2026-2027</h2>
+            <p style="margin-left: 20px; color: #666; margin-bottom: 30px;">Resumen de ayudas económicas disponibles
+                para estudiantes de la Universidad de Sevilla.</p>
+        </div>
+
+        <div class="timeline-full">
+            <!-- Erasmus+ SEPIE -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-euro-sign fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Ayudas Erasmus+ (SEPIE)</h3>
+                        <p>Dotación de la Comisión Europea gestionada por el Servicio Español para la
+                            Internacionalización de la Educación.</p>
+                    </div>
+                </div>
+                <span class="funding-tag">Unión Europea</span>
+            </div>
+
+            <!-- Junta de Andalucia -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-landmark fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Junta de Andalucía</h3>
+                        <p>Complemento autonómico para estudiantes que participan en programas de movilidad
+                            internacional.</p>
+                    </div>
+                </div>
+                <span class="funding-tag">Autonómica</span>
+            </div>
+
+            <!-- Becas Santander -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-university fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Becas Santander Erasmus+</h3>
+                        <p>Ayudas adicionales de Banco Santander. Requiere inscripción previa en su plataforma
+                            específica.</p>
+                        <div style="margin-top: 10px;">
+                            <a href="https://www.us.es/sites/default/files/becas-y-ayudas/becas-movilidad/propias/Anuncio%20Santander%20Erasmus%202026-27_281125.pdf"
+                                target="_blank" style="color: var(--us-red);">Ver Convocatoria</a>
+                        </div>
+                    </div>
+                </div>
+                <span class="funding-tag">Privada</span>
+            </div>
+
+            <!-- Plan Propio US -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-graduation-cap fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Ayudas IV Plan Propio de Docencia (US)</h3>
+                        <p>Financiación propia de la Universidad de Sevilla para destinos no asociados al programa
+                            Erasmus+.</p>
+                    </div>
+                </div>
+                <span class="funding-tag">Propia US</span>
+            </div>
+
+            <!-- Ulysseus -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-globe-europe fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Programa de Movilidad Ulysseus</h3>
+                        <p>Becas específicas dentro de la alianza Ulysseus de universidades europeas.</p>
+                    </div>
+                </div>
+                <span class="funding-tag">Específica</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Erasmus Connect US - Proyecto Estudiantes Universidad de Sevilla</p>
+        </div>
+    </footer>
+</body>
+
+</html>

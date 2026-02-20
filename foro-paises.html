@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Foros de Destino - Erasmus Connect US</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+                .page-header {
+                        background: #f8f8f8;
+                        padding: 40px 0;
+                        border-bottom: 2px solid var(--us-gold);
+                        margin-bottom: 30px;
+                }
+
+                .back-link {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        color: var(--us-red);
+                        text-decoration: none;
+                        font-weight: bold;
+                        margin-bottom: 20px;
+                        transition: var(--transition);
+                }
+
+                .back-link:hover {
+                        color: var(--us-gold);
+                        transform: translateX(-5px);
+                }
+
+                .destinations-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                        gap: 20px;
+                        padding: 20px 0 60px;
+                }
+
+                .destination-square {
+                        background: white;
+                        aspect-ratio: 1 / 1;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        padding: 20px;
+                        border-radius: 12px;
+                        box-shadow: var(--shadow);
+                        border-bottom: 5px solid var(--us-red);
+                        text-decoration: none;
+                        color: inherit;
+                        transition: var(--transition);
+                }
+
+                .destination-square:hover {
+                        transform: translateY(-10px);
+                        border-bottom-color: var(--us-gold);
+                        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+                }
+
+                .destination-square i {
+                        font-size: 2.5rem;
+                        color: var(--us-red);
+                        margin-bottom: 15px;
+                }
+
+                .destination-square span {
+                        font-weight: bold;
+                        font-size: 0.9rem;
+                        color: #333;
+                        line-height: 1.3;
+                }
+
+                .container-full {
+                        max-width: 100%;
+                        padding: 0 40px;
+                }
+
+                .city-group {
+                        display: none;
+                }
+        </style>
+</head>
+
+<body>
+        <header>
+                <div class="container">
+                        <a href="index.html" class="logo">
+                                <i class="fas fa-university"></i>
+                                Erasmus Connect <span>Universidad de Sevilla</span>
+                        </a>
+                        <nav>
+                                <ul>
+                                        <li><a href="index.html">Inicio</a></li>
+                                        <li><a href="destinos.html">Destinos</a></li>
+                                        <li><a href="convalidaciones.html">Convalidaciones</a></li>
+                                        <li><a href="foro.html" class="active">Foro</a></li>
+                                        <li><a href="contacto.html">Contacto</a></li>
+                                </ul>
+                        </nav>
+                </div>
+        </header>
+
+        <div class="page-header">
+                <div class="container">
+                        <a href="foro.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Países</a>
+                        <h2 id="countryTitle">Destinos</h2>
+                        <p>Selecciona tu ciudad o universidad para entrar en el foro de alumnos.</p>
+                </div>
+        </div>
+
+        <div class="container-full">
+                <div id="cityList">
+                        <!-- Alemania -->
+                        <div id="group-Alemania" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=D+AACHEN01&id=D+AACHEN01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D AACHEN 01</span></a>
+                                <a href="foro-detalle.html?u=D+BERLIN02&id=D+BERLIN02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D BERLIN 02</span></a>
+                                <a href="foro-detalle.html?u=D+BRAUNSC01&id=D+BRAUNSC01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D BRAUNSC 01</span></a>
+                                <a href="foro-detalle.html?u=D+DARMSTA01&id=D+DARMSTA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D DARMSTA 01</span></a>
+                                <a href="foro-detalle.html?u=D+DRESDEN02&id=D+DRESDEN02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D DRESDEN 02</span></a>
+                                <a href="foro-detalle.html?u=D+ESSEN04&id=D+ESSEN04" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D ESSEN 04</span></a>
+                                <a href="foro-detalle.html?u=D+HAMBURG03&id=D+HAMBURG03" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D HAMBURG 03</span></a>
+                                <a href="foro-detalle.html?u=D+HILDESH02&id=D+HILDESH02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D HILDESH 02</span></a>
+                                <a href="foro-detalle.html?u=D+KARLSRU01&id=D+KARLSRU01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D KARLSRU 01</span></a>
+                                <a href="foro-detalle.html?u=D+KONSTAN2&id=D+KONSTAN2" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D KONSTAN 2</span></a>
+                                <a href="foro-detalle.html?u=D+MUNCHEN02&id=D+MUNCHEN02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D MUNCHEN 02</span></a>
+                                <a href="foro-detalle.html?u=D+MUNSTER02&id=D+MUNSTER02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D MUNSTER 02</span></a>
+                                <a href="foro-detalle.html?u=D+REGENSB02&id=D+REGENSB02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D REGENSB 02</span></a>
+                                <a href="foro-detalle.html?u=D+STUTTGA01&id=D+STUTTGA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>D STUTTGA 01</span></a>
+                        </div>
+
+                        <!-- Argentina -->
+                        <div id="group-Argentina" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=AR+UBA&id=AR+UBA" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>AR
+                                                UBA</span></a>
+                        </div>
+
+                        <!-- Austria -->
+                        <div id="group-Austria" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=A+INNSBRUCK+08&id=A+INNSBRUCK+08"
+                                        class="destination-square"><i class="fas fa-comments"></i><span>A INNSBRUCK
+                                                08</span></a>
+                                <a href="foro-detalle.html?u=A+WIEN+02&id=A+WIEN+02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>A WIEN 02</span></a>
+                        </div>
+
+                        <!-- Bélgica -->
+                        <div id="group-Belgica" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=B+BRUXEL+04&id=B+BRUXEL+04" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>B BRUXEL 04</span></a>
+                                <a href="foro-detalle.html?u=B+GENT+01&id=B+GENT+01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>B GENT 01</span></a>
+                                <a href="foro-detalle.html?u=B+LIEGE+01&id=B+LIEGE+01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>B LIEGE 01</span></a>
+                                <a href="foro-detalle.html?u=B+MONS+21&id=B+MONS+21" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>B MONS 21</span></a>
+                        </div>
+
+                        <!-- Brasil -->
+                        <div id="group-Brasil" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=BR+BRASILIA&id=BR+BRASILIA" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>BR BRASILIA</span></a>
+                                <a href="foro-detalle.html?u=BR+DO+CEARA&id=BR+DO+CEARA" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>BR DO CEARA</span></a>
+                                <a href="foro-detalle.html?u=BR+FEDEPERNAMBUCO&id=BR+FEDEPERNAMBUCO"
+                                        class="destination-square"><i class="fas fa-comments"></i><span>BR
+                                                FEDEPERNAMBUCO</span></a>
+                                <a href="foro-detalle.html?u=BR+FUNDACAO&id=BR+FUNDACAO" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>BR FUNDACAO</span></a>
+                        </div>
+
+                        <!-- Bulgaria -->
+                        <div id="group-Bulgaria" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=BG+SOFIA04&id=BG+SOFIA04" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>BG SOFIA 04</span></a>
+                        </div>
+
+                        <!-- Canadá -->
+                        <div id="group-Canada" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=CA+ETSMONTREAL&id=CA+ETSMONTREAL"
+                                        class="destination-square"><i class="fas fa-comments"></i><span>CA
+                                                ETSMONTREAL</span></a>
+                                <a href="foro-detalle.html?u=CA+POLYMONTREAL&id=CA+POLYMONTREAL"
+                                        class="destination-square"><i class="fas fa-comments"></i><span>CA
+                                                POLYMONTREAL</span></a>
+                        </div>
+
+                        <!-- Chile -->
+                        <div id="group-Chile" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=CHI+CHITALCA&id=CHI+CHITALCA" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>CHI CHITALCA</span></a>
+                                <a href="foro-detalle.html?u=CHI+CONCEPCION&id=CHI+CONCEPCION"
+                                        class="destination-square"><i class="fas fa-comments"></i><span>CHI
+                                                CONCEPCION</span></a>
+                                <a href="foro-detalle.html?u=CHI+UCHILE&id=CHI+UCHILE" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>CHI UCHILE</span></a>
+                                <a href="foro-detalle.html?u=CHI+UNAP&id=CHI+UNAP" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>CHI UNAP</span></a>
+                                <a href="foro-detalle.html?u=CHICENTRAL&id=CHICENTRAL" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>CHI CENTRAL</span></a>
+                        </div>
+
+                        <!-- China -->
+                        <div id="group-China" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=CHI+BEIHANG&id=CHI+BEIHANG" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>CHI BEIHANG</span></a>
+                                <a href="foro-detalle.html?u=CHI+BEIJINGTECNOL&id=CHI+BEIJINGTECNOL"
+                                        class="destination-square"><i class="fas fa-comments"></i><span>CHI
+                                                BEIJINGTECNOL</span></a>
+                        </div>
+
+                        <!-- Eslovaquia -->
+                        <div id="group-Eslovaquia" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=SK+KOSICE03&id=SK+KOSICE03" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>SK KOSICE 03</span></a>
+                        </div>
+
+                        <!-- Finlandia -->
+                        <div id="group-Finlandia" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=SF+LAPPEEN01&id=SF+LAPPEEN01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>SF LAPPEEN 01</span></a>
+                        </div>
+
+                        <!-- Francia -->
+                        <div id="group-Francia" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=F+AUBIERE04&id=F+AUBIERE04" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F AUBIERE 04</span></a>
+                                <a href="foro-detalle.html?u=F+CHAMBER01&id=F+CHAMBER01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F CHAMBER 01</span></a>
+                                <a href="foro-detalle.html?u=F+GIF-YVE03&id=F+GIF-YVE03" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F GIF-YVE 03</span></a>
+                                <a href="foro-detalle.html?u=F+GRENOBL22&id=F+GRENOBL22" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F GRENOBL 22</span></a>
+                                <a href="foro-detalle.html?u=F+LEVALLO01&id=F+LEVALLO01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F LEVALLO 01</span></a>
+                                <a href="foro-detalle.html?u=F+LILLE14&id=F+LILLE14" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F LILLE 14</span></a>
+                                <a href="foro-detalle.html?u=F+LYON01&id=F+LYON01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F
+                                                LYON 01</span></a>
+                                <a href="foro-detalle.html?u=F+LYON11&id=F+LYON11" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F
+                                                LYON 11</span></a>
+                                <a href="foro-detalle.html?u=F+NANTES07&id=F+NANTES07" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F NANTES 07</span></a>
+                                <a href="foro-detalle.html?u=F+PARIS062&id=F+PARIS062" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F PARIS 062</span></a>
+                                <a href="foro-detalle.html?u=F+PARIS468&id=F+PARIS468" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F PARIS 468</span></a>
+                                <a href="foro-detalle.html?u=F+POITIER05&id=F+POITIER05" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F POITIER 05</span></a>
+                                <a href="foro-detalle.html?u=F+ST-ETIE06&id=F+ST-ETIE06" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F ST-ETIE 06</span></a>
+                                <a href="foro-detalle.html?u=F+TOULOS18&id=F+TOULOS18" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F TOULOS 18</span></a>
+                                <a href="foro-detalle.html?u=F+TOULOUS16&id=F+TOULOUS16" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>F TOULOUS 16</span></a>
+                        </div>
+
+                        <!-- Grecia -->
+                        <div id="group-Grecia" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=G+ATHINE02&id=G+ATHINE02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>G ATHINE 02</span></a>
+                                <a href="foro-detalle.html?u=G+THESSAL01&id=G+THESSAL01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>G THESSAL 01</span></a>
+                        </div>
+
+                        <!-- Hungría -->
+                        <div id="group-Hungria" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=H+BUDAPES02&id=H+BUDAPES02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>H BUDAPES 02</span></a>
+                        </div>
+
+                        <!-- India -->
+                        <div id="group-India" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=INDITMADRAS&id=INDITMADRAS" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>INDIT MADRAS</span></a>
+                        </div>
+
+                        <!-- Irlanda -->
+                        <div id="group-Irlanda" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=IRDUBLIN44&id=IRDUBLIN44" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>IR DUBLIN 44</span></a>
+                                <a href="foro-detalle.html?u=IRLCORK01&id=IRLCORK01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>IRL CORK 01</span></a>
+                        </div>
+
+                        <!-- Italia -->
+                        <div id="group-Italia" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=I+ANCONA01&id=I+ANCONA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I ANCONA 01</span></a>
+                                <a href="foro-detalle.html?u=I+BARI05&id=I+BARI05" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I
+                                                BARI 05</span></a>
+                                <a href="foro-detalle.html?u=I+BERGAMO01&id=I+BERGAMO01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I BERGAMO 01</span></a>
+                                <a href="foro-detalle.html?u=I+BOLOGNA01&id=I+BOLOGNA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I BOLOGNA 01</span></a>
+                                <a href="foro-detalle.html?u=I+CATANIA01&id=I+CATANIA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I CATANIA 01</span></a>
+                                <a href="foro-detalle.html?u=I+ENNA01&id=I+ENNA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I
+                                                ENNA 01</span></a>
+                                <a href="foro-detalle.html?u=I+FERRARA01&id=I+FERRARA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I FERRARA 01</span></a>
+                                <a href="foro-detalle.html?u=I+FIRENZE01&id=I+FIRENZE01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I FIRENZE 01</span></a>
+                                <a href="foro-detalle.html?u=I+GENOVA01&id=I+GENOVA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I GENOVA 01</span></a>
+                                <a href="foro-detalle.html?u=I+MILANO02&id=I+MILANO02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I MILANO 02</span></a>
+                                <a href="foro-detalle.html?u=I+NAPOLI01&id=I+NAPOLI01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I NAPOLI 01</span></a>
+                                <a href="foro-detalle.html?u=I+PADOVA01&id=I+PADOVA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I PADOVA 01</span></a>
+                                <a href="foro-detalle.html?u=I+PALERMO01&id=I+PALERMO01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I PALERMO 01</span></a>
+                                <a href="foro-detalle.html?u=I+PARMA01&id=I+PARMA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I PARMA 01</span></a>
+                                <a href="foro-detalle.html?u=I+PISA01&id=I+PISA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I
+                                                PISA 01</span></a>
+                                <a href="foro-detalle.html?u=I+ROMA01&id=I+ROMA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I
+                                                ROMA 01</span></a>
+                                <a href="foro-detalle.html?u=I+TORINO02&id=I+TORINO02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I TORINO 02</span></a>
+                                <a href="foro-detalle.html?u=I+VITERBO01&id=I+VITERBO01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>I VITERBO 01</span></a>
+                        </div>
+
+                        <!-- México -->
+                        <div id="group-Mexico" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=M+CUAUHTEMOC&id=M+CUAUHTEMOC" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>M CUAUHTEMOC</span></a>
+                                <a href="foro-detalle.html?u=M+TECMONTERR&id=M+TECMONTERR" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>M TECMONTERR</span></a>
+                        </div>
+
+                        <!-- Noruega -->
+                        <div id="group-Noruega" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=N+TRONDHE01&id=N+TRONDHE01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>N TRONDHE 01</span></a>
+                        </div>
+
+                        <!-- Perú -->
+                        <div id="group-Peru" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=PE+SANPABLO&id=PE+SANPABLO" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>PE SANPABLO</span></a>
+                        </div>
+
+                        <!-- Polonia -->
+                        <div id="group-Polonia" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=PL+KIELCE01&id=PL+KIELCE01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>PL KIELCE 01</span></a>
+                                <a href="foro-detalle.html?u=PL+KRAKOW02&id=PL+KRAKOW02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>PL KRAKOW 02</span></a>
+                                <a href="foro-detalle.html?u=PL+POZNAN02&id=PL+POZNAN02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>PL POZNAN 02</span></a>
+                                <a href="foro-detalle.html?u=PL+WROCLAW02&id=PL+WROCLAW02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>PL WROCLAW 02</span></a>
+                        </div>
+
+                        <!-- Portugal -->
+                        <div id="group-Portugal" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=P+COVILHA+01&id=P+COVILHA+01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>P COVILHA 01</span></a>
+                                <a href="foro-detalle.html?u=P+LISBOA109&id=P+LISBOA109" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>P LISBOA 109</span></a>
+                                <a href="foro-detalle.html?u=P+PORTO02&id=P+PORTO02" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>P PORTO 02</span></a>
+                                <a href="foro-detalle.html?u=P+PORTO05&id=P+PORTO05" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>P PORTO 05</span></a>
+                        </div>
+
+                        <!-- Rep. Checa -->
+                        <div id="group-RepCheca" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=CZ+BRNO01&id=CZ+BRNO01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>CZ BRNO 01</span></a>
+                                <a href="foro-detalle.html?u=CZ+PARDUB01&id=CZ+PARDUB01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>CZ PARDUB 01</span></a>
+                                <a href="foro-detalle.html?u=CZ+PRAHA10&id=CZ+PRAHA10" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>CZ PRAHA 10</span></a>
+                        </div>
+
+                        <!-- Rumanía -->
+                        <div id="group-Rumania" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=RO+BUCURES43&id=RO+BUCURES43" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>RO BUCURES 43</span></a>
+                        </div>
+
+                        <!-- Suecia -->
+                        <div id="group-Suecia" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=S+LULEA01&id=S+LULEA01" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>S LULEA 01</span></a>
+                        </div>
+
+                        <!-- Suiza -->
+                        <div id="group-Suiza" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=CH+LUZERN14&id=CH+LUZERN14" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>CH LUZERN 14</span></a>
+                        </div>
+
+                        <!-- Turquía -->
+                        <div id="group-Turquia" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=TR+ISTANBU04&id=TR+ISTANBU04" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>TR ISTANBU 04</span></a>
+                                <a href="foro-detalle.html?u=TR+KAYSERI04&id=TR+KAYSERI04" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>TR KAYSERI 04</span></a>
+                        </div>
+
+                        <!-- Uruguay -->
+                        <div id="group-Uruguay" class="city-group destinations-grid">
+                                <a href="foro-detalle.html?u=U+MONTEVIDEO&id=U+MONTEVIDEO" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>U MONTEVIDEO</span></a>
+                                <a href="foro-detalle.html?u=U+ORT&id=U+ORT" class="destination-square"><i
+                                                class="fas fa-comments"></i><span>U
+                                                ORT</span></a>
+                        </div>
+
+                </div>
+        </div>
+
+        <footer>
+                <div class="container">
+                        <p>&copy; 2024 Erasmus Connect US - Proyecto Estudiantes Universidad de Sevilla</p>
+                </div>
+        </footer>
+
+        <script>
+                const urlParams = new URLSearchParams(window.location.search);
+                const pais = urlParams.get('pais');
+
+                if (pais) {
+                        document.getElementById('countryTitle').innerText = 'Destinos en ' + pais;
+                        const group = document.getElementById('group-' + pais);
+                        if (group) {
+                                group.style.display = 'grid';
+                        }
+                }
+        </script>
+</body>
+
+</html>

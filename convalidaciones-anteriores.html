@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convalidaciones Anteriores - Erasmus Connect US</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .search-section {
+            width: 100%;
+            padding: 40px 0;
+            background: #fdfdfd;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 70px;
+            z-index: 10;
+        }
+
+        .search-strip {
+            display: flex;
+            gap: 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 50px;
+            overflow: hidden;
+            border: 2px solid var(--us-red);
+            max-width: 100%;
+            background: white;
+        }
+
+        .search-strip input {
+            flex: 1;
+            border: none;
+            padding: 20px 30px;
+            font-size: 1.2rem;
+            outline: none;
+        }
+
+        .search-strip button {
+            background: var(--us-red);
+            color: white;
+            border: none;
+            padding: 0 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-strip button:hover {
+            background: #7a0000;
+        }
+
+        .destinations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding-bottom: 50px;
+        }
+
+        .destination-strip {
+            background: var(--white);
+            border-left: 10px solid var(--us-red);
+            padding: 25px 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            width: 100%;
+        }
+
+        .destination-strip:hover {
+            transform: scale(1.005);
+            border-left-color: var(--us-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .destination-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--us-red);
+            margin: 0;
+        }
+
+        .destination-icon {
+            color: var(--us-gold);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .destination-strip:hover .destination-icon {
+            transform: translateX(10px);
+        }
+
+        .page-header {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 5px solid var(--us-gold);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--us-red);
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--us-gold);
+            transform: translateX(-5px);
+        }
+
+        .container-full {
+            max-width: 100%;
+            padding: 0 40px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #888;
+            font-size: 1.2rem;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-university"></i>
+                Erasmus Connect <span>Universidad de Sevilla</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="destinos.html">Destinos</a></li>
+                    <li><a href="convalidaciones.html" class="active">Convalidaciones</a></li>
+                    <li><a href="foro.html">Foro</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-full">
+        <div class="page-header">
+            <a href="convalidaciones.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a
+                Convalidaciones</a>
+            <h2 class="section-title" style="margin:0;">Convalidaciones de Años Anteriores (Solo ETSI)</h2>
+            <p style="color: #666; margin-top: 5px;">Busca tu código de universidad o destino para ver las
+                convalidaciones confirmadas (Válido únicamente para estudiantes de la ETSI).</p>
+        </div>
+
+        <div class="search-section">
+            <div class="search-strip">
+                <input type="text" id="destinationSearch"
+                    placeholder="Escribe el código o nombre de tu universidad de destino...">
+                <button><i class="fas fa-search"></i> Buscar</button>
+            </div>
+        </div>
+
+        <div class="destinations-list" id="destinationsList">
+            <!-- A -->
+            <a href="Convalidaciones Anteriores/A INNSBRUCK 08 (MII).pdf" target="_blank" class="destination-strip"
+                data-name="a innsbruck 08 mii">
+                <h3 class="destination-name">A INNSBRUCK 08 (MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/A WIEN 02  GIQ).pdf" target="_blank" class="destination-strip"
+                data-name="a wien 02 giq">
+                <h3 class="destination-name">A WIEN 02 (GIQ)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/AR UBA (GIOI).pdf" target="_blank" class="destination-strip"
+                data-name="ar uba gioi">
+                <h3 class="destination-name">AR UBA (GIOI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- B -->
+            <a href="Convalidaciones Anteriores/B BRUXEL 04 (GITI, MII, GIC).pdf" target="_blank"
+                class="destination-strip" data-name="b bruxel 04 giti mii gic">
+                <h3 class="destination-name">B BRUXEL 04 (GITI, MII, GIC)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/B GENT 01 (MIQ-MIAMB).pdf" target="_blank" class="destination-strip"
+                data-name="b gent 01 miq miamb">
+                <h3 class="destination-name">B GENT 01 (MIQ-MIAMB)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/B LIEGE 01 (GIE).pdf" target="_blank" class="destination-strip"
+                data-name="b liege 01 gie">
+                <h3 class="destination-name">B LIEGE 01 (GIE)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/B MONS 21 (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="b mons 21 giti">
+                <h3 class="destination-name">B MONS 21 (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/BG SOFIA04.pdf" target="_blank" class="destination-strip"
+                data-name="bg sofia04">
+                <h3 class="destination-name">BG SOFIA 04</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- BR -->
+            <a href="Convalidaciones Anteriores/BR BRASILIA (GIQ, GITI).pdf" target="_blank" class="destination-strip"
+                data-name="br brasilia giq giti">
+                <h3 class="destination-name">BR BRASILIA (GIQ, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/BR DO CEARA (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="br do ceara giti">
+                <h3 class="destination-name">BR DO CEARA (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/BR FEDEPERNAMBUCO (GIC).pdf" target="_blank" class="destination-strip"
+                data-name="br fedepernambuco gic">
+                <h3 class="destination-name">BR FEDEPERNAMBUCO (GIC)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/BR FUNDACAO (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="br fundacao giti">
+                <h3 class="destination-name">BR FUNDACAO (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- CA -->
+            <a href="Convalidaciones Anteriores/CA ETSMONTREAL (GITI, GIE, GIERM, GITT).pdf" target="_blank"
+                class="destination-strip" data-name="ca etsmontreal giti gie gierm gitt">
+                <h3 class="destination-name">CA ETSMONTREAL (GITI, GIE, GIERM, GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/CA POLYMONTREAL (GITT, GITI, GIE, GIERM).pdf" target="_blank"
+                class="destination-strip" data-name="ca polymontreal gitt giti gie gierm">
+                <h3 class="destination-name">CA POLYMONTREAL (GITT, GITI, GIE, GIERM)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- CH -->
+            <a href="Convalidaciones Anteriores/CH LUZERN14 (GIOI, GITI).pdf" target="_blank" class="destination-strip"
+                data-name="ch luzern14 gioi giti">
+                <h3 class="destination-name">CH LUZERN 14 (GIOI, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- CHI -->
+            <a href="Convalidaciones Anteriores/CHI BEIHANG (MII).pdf" target="_blank" class="destination-strip"
+                data-name="chi beihang mii">
+                <h3 class="destination-name">CHI BEIHANG (MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/CHI BEIJINGTECNOL (GITT).pdf" target="_blank" class="destination-strip"
+                data-name="chi beijingtecnol gitt">
+                <h3 class="destination-name">CHI BEIJINGTECNOL (GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/CHI CHITALCA (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="chi chitalca giti">
+                <h3 class="destination-name">CHI CHITALCA (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/CHI CONCEPCION (GITI,GIQ).pdf" target="_blank" class="destination-strip"
+                data-name="chi concepcion giti giq">
+                <h3 class="destination-name">CHI CONCEPCION (GITI, GIQ)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/CHI UCHILE (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="chi uchile giti">
+                <h3 class="destination-name">CHI UCHILE (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/CHI UNAP (GIC).pdf" target="_blank" class="destination-strip"
+                data-name="chi unap gic">
+                <h3 class="destination-name">CHI UNAP (GIC)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/CHICENTRAL (GIC).pdf" target="_blank" class="destination-strip"
+                data-name="chicentral gic">
+                <h3 class="destination-name">CHI CENTRAL (GIC)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- CZ -->
+            <a href="Convalidaciones Anteriores/CZ BRNO01 (GIC).pdf" target="_blank" class="destination-strip"
+                data-name="cz brno01 gic">
+                <h3 class="destination-name">CZ BRNO 01 (GIC)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/CZ PARDUB01 (GIERM, GITT).pdf" target="_blank" class="destination-strip"
+                data-name="cz pardub01 gierm gitt">
+                <h3 class="destination-name">CZ PARDUB 01 (GIERM, GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/CZ PRAHA10 (GIA, MIA).pdf" target="_blank" class="destination-strip"
+                data-name="cz praha10 gia mia">
+                <h3 class="destination-name">CZ PRAHA 10 (GIA, MIA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- D (Alemania) -->
+            <a href="Convalidaciones Anteriores/D AACHEN01 (GIA, GITI).pdf" target="_blank" class="destination-strip"
+                data-name="d aachen01 gia giti">
+                <h3 class="destination-name">D AACHEN 01 (GIA, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D BERLIN02 (GIERM, GITI, GITT,, MII,MII-MIOGE).pdf" target="_blank"
+                class="destination-strip" data-name="d berlin02 gierm giti gitt mii mioge">
+                <h3 class="destination-name">D BERLIN 02 (GIERM, GITI, GITT, MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D BRAUNSC01 (GIA).pdf" target="_blank" class="destination-strip"
+                data-name="d braunsc01 gia">
+                <h3 class="destination-name">D BRAUNSC 01 (GIA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D DARMSTA01 (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="d darmsta01 giti">
+                <h3 class="destination-name">D DARMSTA 01 (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D DRESDEN02 (GITT).pdf" target="_blank" class="destination-strip"
+                data-name="d dresden02 gitt">
+                <h3 class="destination-name">D DRESDEN 02 (GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D ESSEN04 (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="d essen04 giti">
+                <h3 class="destination-name">D ESSEN 04 (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D HAMBURG03 (GIQ).pdf" target="_blank" class="destination-strip"
+                data-name="d hamburg03 giq">
+                <h3 class="destination-name">D HAMBURG 03 (GIQ)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D HILDESH02 (MII).pdf" target="_blank" class="destination-strip"
+                data-name="d hildesh02 mii">
+                <h3 class="destination-name">D HILDESH 02 (MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D KARLSRU01 (GIERM,GITI).pdf" target="_blank" class="destination-strip"
+                data-name="d karlsru01 gierm giti">
+                <h3 class="destination-name">D KARLSRU 01 (GIERM, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D KONSTAN2 (GIOI).pdf" target="_blank" class="destination-strip"
+                data-name="d konstan2 gioi">
+                <h3 class="destination-name">D KONSTAN 2 (GIOI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D MUNCHEN02 (GIA, MII,GITI).pdf" target="_blank"
+                class="destination-strip" data-name="d munchen02 gia mii giti">
+                <h3 class="destination-name">D MUNCHEN 02 (GIA, MII, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D MUNSTER02 (GIC, MICCP).pdf" target="_blank" class="destination-strip"
+                data-name="d munster02 gic miccp">
+                <h3 class="destination-name">D MUNSTER 02 (GIC, MICCP)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D REGENSB02 (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="d regensb02 giti">
+                <h3 class="destination-name">D REGENSB 02 (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/D STUTTGA01 (GIE, GITI.pdf" target="_blank" class="destination-strip"
+                data-name="d stuttga01 gie giti">
+                <h3 class="destination-name">D STUTTGA 01 (GIE, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- F (Francia) -->
+            <a href="Convalidaciones Anteriores/F AUBIERE04 (GITI,GIQ).pdf" target="_blank" class="destination-strip"
+                data-name="f aubiere04 giti giq">
+                <h3 class="destination-name">F AUBIERE 04 (GITI, GIQ)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F CHAMBER01 (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="f chamber01 giti">
+                <h3 class="destination-name">F CHAMBER 01 (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F GIF-YVE03  (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="f gif yve03 giti">
+                <h3 class="destination-name">F GIF-YVE 03 (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F GRENOBL22 (GITI. GIERM).pdf" target="_blank" class="destination-strip"
+                data-name="f grenobl22 giti gierm">
+                <h3 class="destination-name">F GRENOBL 22 (GITI, GIERM)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F LEVALLO01 (MIA).pdf" target="_blank" class="destination-strip"
+                data-name="f levallo01 mia">
+                <h3 class="destination-name">F LEVALLO 01 (MIA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F LILLE14 (MII).pdf" target="_blank" class="destination-strip"
+                data-name="f lille14 mii">
+                <h3 class="destination-name">F LILLE 14 (MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F LYON01 ( MII, MII-MOIGE, MII-MIQ).pdf" target="_blank"
+                class="destination-strip" data-name="f lyon01 mii moige miq">
+                <h3 class="destination-name">F LYON 01 (MII, MOIGE, MIQ)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F LYON11 (MII).pdf" target="_blank" class="destination-strip"
+                data-name="f lyon11 mii">
+                <h3 class="destination-name">F LYON 11 (MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F NANTES07 (MII).pdf" target="_blank" class="destination-strip"
+                data-name="f nantes07 mii">
+                <h3 class="destination-name">F NANTES 07 (MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F PARIS062 (GITI, MII).pdf" target="_blank" class="destination-strip"
+                data-name="f paris062 giti mii">
+                <h3 class="destination-name">F PARIS 062 (GITI, MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F PARIS468 (GIC).pdf" target="_blank" class="destination-strip"
+                data-name="f paris468 gic">
+                <h3 class="destination-name">F PARIS 468 (GIC)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F POITIER05 (MIA).pdf" target="_blank" class="destination-strip"
+                data-name="f poitier05 mia">
+                <h3 class="destination-name">F POITIER 05 (MIA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F ST-ETIE06 (GIOI).pdf" target="_blank" class="destination-strip"
+                data-name="f st etie06 gioi">
+                <h3 class="destination-name">F ST-ETIE 06 (GIOI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F TOULOS18 (GIA,GITI).pdf" target="_blank" class="destination-strip"
+                data-name="f toulos18 gia giti">
+                <h3 class="destination-name">F TOULOS 18 (GIA, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/F TOULOUS16 (GIA, MIA).pdf" target="_blank" class="destination-strip"
+                data-name="f toulous16 gia mia">
+                <h3 class="destination-name">F TOULOUS 16 (GIA, MIA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- G (Grecia) -->
+            <a href="Convalidaciones Anteriores/G ATHINE02 ( GIQ,MIQ).pdf" target="_blank" class="destination-strip"
+                data-name="g athine02 giq miq">
+                <h3 class="destination-name">G ATHINE 02 (GIQ, MIQ)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/G THESSAL01 (GIC, GIERM).pdf" target="_blank" class="destination-strip"
+                data-name="g thessal01 gic gierm">
+                <h3 class="destination-name">G THESSAL 01 (GIC, GIERM)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- H (Hungria) -->
+            <a href="Convalidaciones Anteriores/H BUDAPES02 (GIC, GITT, MICCP).pdf" target="_blank"
+                class="destination-strip" data-name="h budapes02 gic gitt miccp">
+                <h3 class="destination-name">H BUDAPES 02 (GIC, GITT, MICCP)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- I (Italia) -->
+            <a href="Convalidaciones Anteriores/I ANCONA01 (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="i ancona01 giti">
+                <h3 class="destination-name">I ANCONA 01 (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I BARI05 (GIOI GIA, MII).pdf" target="_blank" class="destination-strip"
+                data-name="i bari05 gioi gia mii">
+                <h3 class="destination-name">I BARI 05 (GIOI, GIA, MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I BERGAMO01.pdf" target="_blank" class="destination-strip"
+                data-name="i bergamo01">
+                <h3 class="destination-name">I BERGAMO 01</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I BOLOGNA01 (GIE, GIERM, GIQ, GITI, GITT).pdf" target="_blank"
+                class="destination-strip" data-name="i bologna01 gie gierm giq giti gitt">
+                <h3 class="destination-name">I BOLOGNA 01 (GIE, GIERM, GIQ, GITI, GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I CATANIA01 (GIOI, GITI, MII).pdf" target="_blank"
+                class="destination-strip" data-name="i catania01 gioi giti mii">
+                <h3 class="destination-name">I CATANIA 01 (GIOI, GITI, MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I ENNA01.pdf" target="_blank" class="destination-strip"
+                data-name="i enna01">
+                <h3 class="destination-name">I ENNA 01</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I FERRARA01.pdf" target="_blank" class="destination-strip"
+                data-name="i ferrara01">
+                <h3 class="destination-name">I FERRARA 01</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I FIRENZE01 (GITT, GITI).pdf" target="_blank" class="destination-strip"
+                data-name="i firenze01 gitt giti">
+                <h3 class="destination-name">I FIRENZE 01 (GITT, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I GENOVA01 (GIOI, GIE, GIC. GITT, GITI, MIQ).pdf" target="_blank"
+                class="destination-strip" data-name="i genova01 gioi gie gic gitt giti miq">
+                <h3 class="destination-name">I GENOVA 01 (GIOI, GIE, GIC, GITT, GITI, MIQ)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I MILANO02 (GIA, GIC, GIE, GIQ, GIERM, GIOI, GITI, GITT, MIA, MII, MIT, MICCP).pdf"
+                target="_blank" class="destination-strip"
+                data-name="i milano02 gia gic gie giq gierm gioi giti gitt mia mii mit miccp">
+                <h3 class="destination-name">I MILANO 02 (POLITECNICO DI MILANO)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I NAPOLI01 (GIA, GIERM, GIOI, GIQ, MIA, GTT).pdf" target="_blank"
+                class="destination-strip" data-name="i napoli01 gia gierm gioi giq mia gtt">
+                <h3 class="destination-name">I NAPOLI 01 (GIA, GIERM, GIOI, GIQ, MIA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I PADOVA01 (GITI, GIQ,  MII, MII -MORG).pdf" target="_blank"
+                class="destination-strip" data-name="i padova01 giti giq mii morg">
+                <h3 class="destination-name">I PADOVA 01 (GITI, GIQ, MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I PALERMO01 (GIOI).pdf" target="_blank" class="destination-strip"
+                data-name="i palermo01 gioi">
+                <h3 class="destination-name">I PALERMO 01 (GIOI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I PARMA01 (GITI, MII).pdf" target="_blank" class="destination-strip"
+                data-name="i parma01 giti mii">
+                <h3 class="destination-name">I PARMA 01 (GITI, MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I PISA01 (GIA).pdf" target="_blank" class="destination-strip"
+                data-name="i pisa01 gia">
+                <h3 class="destination-name">I PISA 01 (GIA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I ROMA01 (GIA, GIERM, GIOI, GITI, GITT, MII, MIQ, GIE).pdf"
+                target="_blank" class="destination-strip" data-name="i roma01 gia gierm gioi giti gitt mii miq gie">
+                <h3 class="destination-name">I ROMA 01 (SAPIENZA UNIVERSITÀ DI ROMA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I TORINO02 (GITI, MIA, MII).pdf" target="_blank"
+                class="destination-strip" data-name="i torino02 giti mia mii">
+                <h3 class="destination-name">I TORINO 02 (GITI, MIA, MII)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/I VITERBO01 (GITI, GIE).pdf" target="_blank" class="destination-strip"
+                data-name="i viterbo01 giti gie">
+                <h3 class="destination-name">I VITERBO 01 (GITI, GIE)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Otros -->
+            <a href="Convalidaciones Anteriores/INDITMADRAS (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="inditmadras giti">
+                <h3 class="destination-name">INDIT MADRAS (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/IRDUBLIN44 (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="irdublin44 giti">
+                <h3 class="destination-name">IR DUBLIN 44 (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/IRLCORK01 (GITT).pdf" target="_blank" class="destination-strip"
+                data-name="irlcork01 gitt">
+                <h3 class="destination-name">IRL CORK 01 (GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- M (Mexico) -->
+            <a href="Convalidaciones Anteriores/M CUAUHTEMOC (GIC).pdf" target="_blank" class="destination-strip"
+                data-name="m cuauhtemoc gic">
+                <h3 class="destination-name">M CUAUHTEMOC (GIC)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/M TECMONTERR (MII-MOIGE, GITI).pdf" target="_blank"
+                class="destination-strip" data-name="m tecmonterr mii moige giti">
+                <h3 class="destination-name">M TECMONTERR (TECNOLÓGICO DE MONTERREY)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- N (Noruega) -->
+            <a href="Convalidaciones Anteriores/N TRONDHE01 (GITI, MII,MII-MSEE, MIQ).pdf" target="_blank"
+                class="destination-strip" data-name="n trondhe01 giti mii miq">
+                <h3 class="destination-name">N TRONDHE 01 (GITI, MII, MIQ)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- P (Portugal) -->
+            <a href="Convalidaciones Anteriores/P COVILHA 01 (GIA).pdf" target="_blank" class="destination-strip"
+                data-name="p covilha 01 gia">
+                <h3 class="destination-name">P COVILHA 01 (GIA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/P LISBOA109 (GIA, GITI, GITT, GIQ, GIC).pdf" target="_blank"
+                class="destination-strip" data-name="p lisboa109 gia giti gitt giq gic">
+                <h3 class="destination-name">P LISBOA 109 (GIA, GITI, GITT, GIQ, GIC)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/P PORTO02 (GIC, GITT, GITI).pdf" target="_blank"
+                class="destination-strip" data-name="p porto02 gic gitt giti">
+                <h3 class="destination-name">P PORTO 02 (GIC, GITT, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/P PORTO05 (GIERM, GITI, GITT).pdf" target="_blank"
+                class="destination-strip" data-name="p porto05 gierm giti gitt">
+                <h3 class="destination-name">P PORTO 05 (GIERM, GITI, GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- PE (Peru) -->
+            <a href="Convalidaciones Anteriores/PE SANPABLO (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="pe sanpablo giti">
+                <h3 class="destination-name">PE SANPABLO (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- PL (Polonia) -->
+            <a href="Convalidaciones Anteriores/PL KIELCE01 (GITI, GIOI).pdf" target="_blank" class="destination-strip"
+                data-name="pl kielce01 giti gioi">
+                <h3 class="destination-name">PL KIELCE 01 (GITI, GIOI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/PL KRAKOW02 (GIE, GITI, MIQ).pdf" target="_blank"
+                class="destination-strip" data-name="pl krakow02 gie giti miq">
+                <h3 class="destination-name">PL KRAKOW 02 (GIE, GITI, MIQ)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/PL POZNAN02 (GIE, GITI, GITT, GIERM).pdf" target="_blank"
+                class="destination-strip" data-name="pl poznan02 gie giti gitt gierm">
+                <h3 class="destination-name">PL POZNAN 02 (GIE, GITI, GITT, GIERM)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/PL WROCLAW02 (GITI. GIE).pdf" target="_blank" class="destination-strip"
+                data-name="pl wroclaw02 giti gie">
+                <h3 class="destination-name">PL WROCLAW 02 (GITI, GIE)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Otros Finales -->
+            <a href="Convalidaciones Anteriores/RO BUCURES43 (GIERM, GITT).pdf" target="_blank"
+                class="destination-strip" data-name="ro bucures43 gierm gitt">
+                <h3 class="destination-name">RO BUCURES 43 (GIERM, GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/S LULEA01 (MII, GIERM, GITI. GITT).pdf" target="_blank"
+                class="destination-strip" data-name="s lulea01 mii gierm giti gitt">
+                <h3 class="destination-name">S LULEA 01 (MII, GIERM, GITI, GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/SF LAPPEEN01 (GIE, GITI).pdf" target="_blank" class="destination-strip"
+                data-name="sf lappeen01 gie giti">
+                <h3 class="destination-name">SF LAPPEEN 01 (GIE, GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/SK KOSICE03 (MII, MIAER).pdf" target="_blank" class="destination-strip"
+                data-name="sk kosice03 mii miaer">
+                <h3 class="destination-name">SK KOSICE 03 (MII, MIAER)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/TR ISTANBU04 (GIA).pdf" target="_blank" class="destination-strip"
+                data-name="tr istanbu04 gia">
+                <h3 class="destination-name">TR ISTANBU 04 (GIA)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/TR KAYSERI04 (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="tr kayseri04 giti">
+                <h3 class="destination-name">TR KAYSERI 04 (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/U MONTEVIDEO (GITI).pdf" target="_blank" class="destination-strip"
+                data-name="u montevideo giti">
+                <h3 class="destination-name">U MONTEVIDEO (GITI)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="Convalidaciones Anteriores/U ORT (GITI, GITT).pdf" target="_blank" class="destination-strip"
+                data-name="u ort giti gitt">
+                <h3 class="destination-name">U ORT (GITI, GITT)</h3>
+                <div class="destination-icon"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <div id="noResults" class="no-results">No se han encontrado universidades que coincidan con tu búsqueda.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Erasmus Connect US - Proyecto Estudiantes Universidad de Sevilla</p>
+        </div>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById('destinationSearch');
+        const destinationsList = document.getElementById('destinationsList');
+        const strips = destinationsList.getElementsByClassName('destination-strip');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', function () {
+            const filter = searchInput.value.toLowerCase().trim();
+            let foundCount = 0;
+
+            for (let i = 0; i < strips.length; i++) {
+                const name = strips[i].getAttribute('data-name');
+                if (name.includes(filter)) {
+                    strips[i].style.display = 'flex';
+                    foundCount++;
+                } else {
+                    strips[i].style.display = 'none';
+                }
+            }
+
+            if (foundCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

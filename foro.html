@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro - Erasmus Connect US</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
+    <style>
+        /* ... existing hero and search styles ... */
+        .foro-hero {
+            background: linear-gradient(rgba(153, 0, 0, 0.8), rgba(153, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1517486808906-6ca8b3f0484c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .search-wrapper {
+            max-width: 600px;
+            margin: 30px auto 0;
+            position: relative;
+        }
+
+        .search-container {
+            background: white;
+            padding: 8px;
+            border-radius: 50px;
+            display: flex;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-container input {
+            flex: 1;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            outline: none;
+            border-radius: 50px 0 0 50px;
+            color: #333;
+        }
+
+        .search-container button {
+            background: var(--us-red);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .search-results-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            text-align: left;
+        }
+
+        .search-result-item {
+            padding: 12px 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        .search-result-item:hover {
+            background: #f8f8f8;
+        }
+
+        .search-result-item .city-name {
+            font-weight: bold;
+            color: var(--us-red);
+        }
+
+        .search-result-item .country-name {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0 60px;
+        }
+
+        .country-card {
+            background: white;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .country-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--us-gold);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .country-flag-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .country-flag-container .fi {
+            font-size: 80px;
+            line-height: 1;
+        }
+
+        .country-card h3 {
+            font-size: 1.8rem;
+            color: var(--us-red);
+            margin-bottom: 10px;
+        }
+
+        .country-card p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #888;
+            font-size: 1.2rem;
+            display: none;
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-university"></i>
+                Erasmus Connect <span>Universidad de Sevilla</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="destinos.html">Destinos</a></li>
+                    <li><a href="convalidaciones.html">Convalidaciones</a></li>
+                    <li><a href="foro.html" class="active">Foro</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="foro-hero">
+        <div class="container">
+            <h1>Comunidad Erasmus Connect US</h1>
+            <p>Selecciona un país o busca directamente tu destino.</p>
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" id="globalSearch" placeholder="Busca por país, ciudad o universidad...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div id="searchResults" class="search-results-dropdown">
+                    <!-- Resultados dinámicos -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-custom">
+        <div class="countries-grid" id="countriesGrid">
+            <!-- cards sorted alphabetically -->
+
+            <a href="foro-paises.html?pais=Alemania" class="country-card" data-name="alemania d germany">
+                <div class="country-flag-container">
+                    <span class="fi fi-de"></span>
+                </div>
+                <h3>Alemania (D)</h3>
+                <p>14 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Argentina" class="country-card" data-name="argentina ar">
+                <div class="country-flag-container">
+                    <span class="fi fi-ar"></span>
+                </div>
+                <h3>Argentina (AR)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Austria" class="country-card" data-name="austria a">
+                <div class="country-flag-container">
+                    <span class="fi fi-at"></span>
+                </div>
+                <h3>Austria (A)</h3>
+                <p>2 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Belgica" class="country-card" data-name="belgica b belgium">
+                <div class="country-flag-container">
+                    <span class="fi fi-be"></span>
+                </div>
+                <h3>Bélgica (B)</h3>
+                <p>4 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Brasil" class="country-card" data-name="brasil br brazil">
+                <div class="country-flag-container">
+                    <span class="fi fi-br"></span>
+                </div>
+                <h3>Brasil (BR)</h3>
+                <p>4 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Bulgaria" class="country-card" data-name="bulgaria bg">
+                <div class="country-flag-container">
+                    <span class="fi fi-bg"></span>
+                </div>
+                <h3>Bulgaria (BG)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Canada" class="country-card" data-name="canada ca">
+                <div class="country-flag-container">
+                    <span class="fi fi-ca"></span>
+                </div>
+                <h3>Canadá (CA)</h3>
+                <p>3 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Chile" class="country-card" data-name="chile chi cl">
+                <div class="country-flag-container">
+                    <span class="fi fi-cl"></span>
+                </div>
+                <h3>Chile (CHI)</h3>
+                <p>7 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=China" class="country-card" data-name="china chi cn">
+                <div class="country-flag-container">
+                    <span class="fi fi-cn"></span>
+                </div>
+                <h3>China (CHI)</h3>
+                <p>2 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Eslovaquia" class="country-card" data-name="eslovaquia sk slovakia">
+                <div class="country-flag-container">
+                    <span class="fi fi-sk"></span>
+                </div>
+                <h3>Eslovaquia (SK)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Finlandia" class="country-card" data-name="finlandia sf finland">
+                <div class="country-flag-container">
+                    <span class="fi fi-fi"></span>
+                </div>
+                <h3>Finlandia (SF)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Francia" class="country-card" data-name="francia f france">
+                <div class="country-flag-container">
+                    <span class="fi fi-fr"></span>
+                </div>
+                <h3>Francia (F)</h3>
+                <p>15 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Grecia" class="country-card" data-name="grecia g greece">
+                <div class="country-flag-container">
+                    <span class="fi fi-gr"></span>
+                </div>
+                <h3>Grecia (G)</h3>
+                <p>2 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Hungria" class="country-card" data-name="hungria h hungary">
+                <div class="country-flag-container">
+                    <span class="fi fi-hu"></span>
+                </div>
+                <h3>Hungría (H)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=India" class="country-card" data-name="india indit">
+                <div class="country-flag-container">
+                    <span class="fi fi-in"></span>
+                </div>
+                <h3>India (INDIT)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Irlanda" class="country-card" data-name="irlanda irl ireland">
+                <div class="country-flag-container">
+                    <span class="fi fi-ie"></span>
+                </div>
+                <h3>Irlanda (IRL)</h3>
+                <p>2 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Italia" class="country-card" data-name="italia i italy">
+                <div class="country-flag-container">
+                    <span class="fi fi-it"></span>
+                </div>
+                <h3>Italia (I)</h3>
+                <p>18 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Mexico" class="country-card" data-name="mexico m">
+                <div class="country-flag-container">
+                    <span class="fi fi-mx"></span>
+                </div>
+                <h3>México (M)</h3>
+                <p>2 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Noruega" class="country-card" data-name="noruega n norway">
+                <div class="country-flag-container">
+                    <span class="fi fi-no"></span>
+                </div>
+                <h3>Noruega (N)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Peru" class="country-card" data-name="peru pe">
+                <div class="country-flag-container">
+                    <span class="fi fi-pe"></span>
+                </div>
+                <h3>Perú (PE)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Polonia" class="country-card" data-name="polonia pl poland">
+                <div class="country-flag-container">
+                    <span class="fi fi-pl"></span>
+                </div>
+                <h3>Polonia (PL)</h3>
+                <p>4 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Portugal" class="country-card" data-name="portugal p">
+                <div class="country-flag-container">
+                    <span class="fi fi-pt"></span>
+                </div>
+                <h3>Portugal (P)</h3>
+                <p>4 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=RepCheca" class="country-card" data-name="republica checa cz czech">
+                <div class="country-flag-container">
+                    <span class="fi fi-cz"></span>
+                </div>
+                <h3>Rep. Checa (CZ)</h3>
+                <p>3 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Rumania" class="country-card" data-name="rumania ro romania">
+                <div class="country-flag-container">
+                    <span class="fi fi-ro"></span>
+                </div>
+                <h3>Rumanía (RO)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Suecia" class="country-card" data-name="suecia s sweden">
+                <div class="country-flag-container">
+                    <span class="fi fi-se"></span>
+                </div>
+                <h3>Suecia (S)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Suiza" class="country-card" data-name="suiza ch switzerland">
+                <div class="country-flag-container">
+                    <span class="fi fi-ch"></span>
+                </div>
+                <h3>Suiza (CH)</h3>
+                <p>1 Destino</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Turquia" class="country-card" data-name="turquia tr turkey">
+                <div class="country-flag-container">
+                    <span class="fi fi-tr"></span>
+                </div>
+                <h3>Turquía (TR)</h3>
+                <p>2 Destinos</p>
+            </a>
+
+            <a href="foro-paises.html?pais=Uruguay" class="country-card" data-name="uruguay u">
+                <div class="country-flag-container">
+                    <span class="fi fi-uy"></span>
+                </div>
+                <h3>Uruguay (U)</h3>
+                <p>2 Destinos</p>
+            </a>
+
+            <div id="noResults" class="no-results">No se han encontrado resultados para tu búsqueda.</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Erasmus Connect US - Proyecto Estudiantes Universidad de Sevilla</p>
+        </div>
+    </footer>
+
+    <script>
+        const allDestinations = [
+            { name: 'D AACHEN 01', country: 'Alemania', id: 'D+AACHEN01' },
+            { name: 'D BERLIN 02', country: 'Alemania', id: 'D+BERLIN02' },
+            { name: 'D BRAUNSC 01', country: 'Alemania', id: 'D+BRAUNSC01' },
+            { name: 'D DARMSTA 01', country: 'Alemania', id: 'D+DARMSTA01' },
+            { name: 'D DRESDEN 02', country: 'Alemania', id: 'D+DRESDEN02' },
+            { name: 'D ESSEN 04', country: 'Alemania', id: 'D+ESSEN04' },
+            { name: 'D HAMBURG 03', country: 'Alemania', id: 'D+HAMBURG03' },
+            { name: 'D HILDESH 02', country: 'Alemania', id: 'D+HILDESH02' },
+            { name: 'D KARLSRU 01', country: 'Alemania', id: 'D+KARLSRU01' },
+            { name: 'D KONSTAN 2', country: 'Alemania', id: 'D+KONSTAN2' },
+            { name: 'D MUNCHEN 02', country: 'Alemania', id: 'D+MUNCHEN02' },
+            { name: 'D MUNSTER 02', country: 'Alemania', id: 'D+MUNSTER02' },
+            { name: 'D REGENSB 02', country: 'Alemania', id: 'D+REGENSB02' },
+            { name: 'D STUTTGA 01', country: 'Alemania', id: 'D+STUTTGA01' },
+            { name: 'I ANCONA 01', country: 'Italia', id: 'I+ANCONA01' },
+            { name: 'I BARI 05', country: 'Italia', id: 'I+BARI05' },
+            { name: 'I BERGAMO 01', country: 'Italia', id: 'I+BERGAMO01' },
+            { name: 'I BOLOGNA 01', country: 'Italia', id: 'I+BOLOGNA01' },
+            { name: 'I CATANIA 01', country: 'Italia', id: 'I+CATANIA01' },
+            { name: 'I ENNA 01', country: 'Italia', id: 'I+ENNA01' },
+            { name: 'I FERRARA 01', country: 'Italia', id: 'I+FERRARA01' },
+            { name: 'I FIRENZE 01', country: 'Italia', id: 'I+FIRENZE01' },
+            { name: 'I GENOVA 01', country: 'Italia', id: 'I+GENOVA01' },
+            { name: 'I MILANO 02', country: 'Italia', id: 'I+MILANO02' },
+            { name: 'I NAPOLI 01', country: 'Italia', id: 'I+NAPOLI01' },
+            { name: 'I PADOVA 01', country: 'Italia', id: 'I+PADOVA01' },
+            { name: 'I PALERMO 01', country: 'Italia', id: 'I+PALERMO01' },
+            { name: 'I PARMA 01', country: 'Italia', id: 'I+PARMA01' },
+            { name: 'I PISA 01', country: 'Italia', id: 'I+PISA01' },
+            { name: 'I ROMA 01', country: 'Italia', id: 'I+ROMA01' },
+            { name: 'I TORINO 02', country: 'Italia', id: 'I+TORINO02' },
+            { name: 'I VITERBO 01', country: 'Italia', id: 'I+VITERBO01' },
+            { name: 'F AUBIERE 04', country: 'Francia', id: 'F+AUBIERE04' },
+            { name: 'F CHAMBER 01', country: 'Francia', id: 'F+CHAMBER01' },
+            { name: 'F GIF-YVE 03', country: 'Francia', id: 'F+GIF-YVE03' },
+            { name: 'F GRENOBL 22', country: 'Francia', id: 'F+GRENOBL22' },
+            { name: 'F LEVALLO 01', country: 'Francia', id: 'F+LEVALLO01' },
+            { name: 'F LILLE 14', country: 'Francia', id: 'F+LILLE14' },
+            { name: 'F LYON 01', country: 'Francia', id: 'F+LYON01' },
+            { name: 'F LYON 11', country: 'Francia', id: 'F+LYON11' },
+            { name: 'F NANTES 07', country: 'Francia', id: 'F+NANTES07' },
+            { name: 'F PARIS 062', country: 'Francia', id: 'F+PARIS062' },
+            { name: 'F PARIS 468', country: 'Francia', id: 'F+PARIS468' },
+            { name: 'F POITIER 05', country: 'Francia', id: 'F+POITIER05' },
+            { name: 'F ST-ETIE 06', country: 'Francia', id: 'F+ST-ETIE06' },
+            { name: 'F TOULOS 18', country: 'Francia', id: 'F+TOULOS18' },
+            { name: 'F TOULOUS 16', country: 'Francia', id: 'F+TOULOUS16' },
+            { name: 'PL KIELCE 01', country: 'Polonia', id: 'PL+KIELCE01' },
+            { name: 'PL KRAKOW 02', country: 'Polonia', id: 'PL+KRAKOW02' },
+            { name: 'PL POZNAN 02', country: 'Polonia', id: 'PL+POZNAN02' },
+            { name: 'PL WROCLAW 02', country: 'Polonia', id: 'PL+WROCLAW02' },
+            { name: 'P COVILHA 01', country: 'Portugal', id: 'P+COVILHA+01' },
+            { name: 'P LISBOA 109', country: 'Portugal', id: 'P+LISBOA109' },
+            { name: 'P PORTO 02', country: 'Portugal', id: 'P+PORTO02' },
+            { name: 'P PORTO 05', country: 'Portugal', id: 'P+PORTO05' },
+            { name: 'A INNSBRUCK 08', country: 'Austria', id: 'A+INNSBRUCK+08' },
+            { name: 'A WIEN 02', country: 'Austria', id: 'A+WIEN+02' },
+            { name: 'B BRUXEL 04', country: 'Bélgica', id: 'B+BRUXEL+04' },
+            { name: 'B GENT 01', country: 'Bélgica', id: 'B+GENT+01' },
+            { name: 'B LIEGE 01', country: 'Bélgica', id: 'B+LIEGE+01' },
+            { name: 'B MONS 21', country: 'Bélgica', id: 'B+MONS+21' },
+            { name: 'BG SOFIA 04', country: 'Bulgaria', id: 'BG+SOFIA04' },
+            { name: 'BR BRASILIA', country: 'Brasil', id: 'BR+BRASILIA' },
+            { name: 'BR DO CEARA', country: 'Brasil', id: 'BR+DO+CEARA' },
+            { name: 'BR FEDEPERNAMBUCO', country: 'Brasil', id: 'BR+FEDEPERNAMBUCO' },
+            { name: 'BR FUNDACAO', country: 'Brasil', id: 'BR+FUNDACAO' },
+            { name: 'CA ETSMONTREAL', country: 'Canadá', id: 'CA+ETSMONTREAL' },
+            { name: 'CA POLYMONTREAL', country: 'Canadá', id: 'CA+POLYMONTREAL' },
+            { name: 'CH LUZERN 14', country: 'Suiza', id: 'CH+LUZERN14' },
+            { name: 'CHI BEIHANG', country: 'China', id: 'CHI+BEIHANG' },
+            { name: 'CHI BEIJINGTECNOL', country: 'China', id: 'CHI+BEIJINGTECNOL' },
+            { name: 'CHI CHITALCA', country: 'Chile', id: 'CHI+CHITALCA' },
+            { name: 'CHI CONCEPCION', country: 'Chile', id: 'CHI+CONCEPCION' },
+            { name: 'CHI UCHILE', country: 'Chile', id: 'CHI+UCHILE' },
+            { name: 'CHI UNAP', country: 'Chile', id: 'CHI+UNAP' },
+            { name: 'CHI CENTRAL', country: 'Chile', id: 'CHICENTRAL' },
+            { name: 'CZ BRNO 01', country: 'Rep. Checa', id: 'CZ+BRNO01' },
+            { name: 'CZ PARDUB 01', country: 'Rep. Checa', id: 'CZ+PARDUB01' },
+            { name: 'CZ PRAHA 10', country: 'Rep. Checa', id: 'CZ+PRAHA10' },
+            { name: 'G ATHINE 02', country: 'Grecia', id: 'G+ATHINE02' },
+            { name: 'G THESSAL 01', country: 'Grecia', id: 'G+THESSAL01' },
+            { name: 'H BUDAPES 02', country: 'Hungría', id: 'H+BUDAPES02' },
+            { name: 'INDIT MADRAS', country: 'India', id: 'INDITMADRAS' },
+            { name: 'IR DUBLIN 44', country: 'Irlanda', id: 'IRDUBLIN44' },
+            { name: 'IRL CORK 01', country: 'Irlanda', id: 'IRLCORK01' },
+            { name: 'M CUAUHTEMOC', country: 'México', id: 'M+CUAUHTEMOC' },
+            { name: 'M TECMONTERR', country: 'México', id: 'M+TECMONTERR' },
+            { name: 'N TRONDHE 01', country: 'Noruega', id: 'N+TRONDHE01' },
+            { name: 'PE SANPABLO', country: 'Perú', id: 'PE+SANPABLO' },
+            { name: 'RO BUCURES 43', country: 'Rumanía', id: 'RO+BUCURES43' },
+            { name: 'S LULEA 01', country: 'Suecia', id: 'S+LULEA01' },
+            { name: 'SF LAPPEEN 01', country: 'Finlandia', id: 'SF+LAPPEEN01' },
+            { name: 'SK KOSICE 03', country: 'Eslovaquia', id: 'SK+KOSICE03' },
+            { name: 'TR ISTANBU 04', country: 'Turquía', id: 'TR+ISTANBU04' },
+            { name: 'TR KAYSERI 04', country: 'Turquía', id: 'TR+KAYSERI04' },
+            { name: 'U MONTEVIDEO', country: 'Uruguay', id: 'U+MONTEVIDEO' },
+            { name: 'U ORT', country: 'Uruguay', id: 'U+ORT' },
+            { name: 'AR UBA', country: 'Argentina', id: 'AR+UBA' }
+        ];
+
+        const searchInput = document.getElementById('globalSearch');
+        const resultsDropdown = document.getElementById('searchResults');
+        const cards = document.getElementsByClassName('country-card');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', function () {
+            const filter = searchInput.value.toLowerCase().trim();
+
+            let countryFound = 0;
+            for (let card of cards) {
+                const name = card.getAttribute('data-name');
+                if (name.includes(filter)) {
+                    card.style.display = 'flex';
+                    countryFound++;
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+
+            if (filter.length > 1) {
+                const matches = allDestinations.filter(d =>
+                    d.name.toLowerCase().includes(filter) ||
+                    d.country.toLowerCase().includes(filter)
+                );
+
+                if (matches.length > 0) {
+                    resultsDropdown.innerHTML = '';
+                    matches.slice(0, 10).forEach(dest => {
+                        const div = document.createElement('div');
+                        div.className = 'search-result-item';
+                        div.innerHTML = `
+                        <i class="fas fa-university"></i>
+                        <div class="info">
+                            <strong>${dest.name}</strong>
+                            <span>${dest.country}</span>
+                        </div>
+                    `;
+                        div.onclick = () => {
+                            window.location.href = `foro-detalle.html?u=${encodeURIComponent(dest.id)}&id=${encodeURIComponent(dest.id)}`;
+                        };
+                        resultsDropdown.appendChild(div);
+                    });
+                    resultsDropdown.style.display = 'block';
+                } else {
+                    resultsDropdown.style.display = 'none';
+                }
+            } else {
+                resultsDropdown.style.display = 'none';
+            }
+
+            noResults.style.display = (countryFound === 0 && resultsDropdown.style.display === 'none') ? 'block' : 'none';
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!searchInput.contains(e.target) && !resultsDropdown.contains(e.target)) {
+                resultsDropdown.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

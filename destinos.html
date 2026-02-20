@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinos - Erasmus Connect US</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-university"></i>
+                Erasmus Connect <span>Universidad de Sevilla</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="destinos.html" class="active">Destinos</a></li>
+                    <li><a href="convalidaciones.html">Convalidaciones</a></li>
+                    <li><a href="foro.html">Foro</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 1200px; padding: 20px 40px;">
+        <div class="destinos-grid">
+            <a href="destinos_erasmus.pdf" target="_blank" class="category-card">
+                <i class="fas fa-globe-europe fa-4x" style="color: var(--us-red);"></i>
+                <h3>Destinos Erasmus+</h3>
+                <p>Movilidad Europa (Grado)</p>
+            </a>
+            <a href="destinos_no_erasmus.pdf" target="_blank" class="category-card">
+                <i class="fas fa-globe-americas fa-4x" style="color: var(--us-gold);"></i>
+                <h3>Destinos No Erasmus</h3>
+                <p>EE.UU., Iberoamérica y Oceanía</p>
+            </a>
+            <a href="destinos_asia.pdf" target="_blank" class="category-card">
+                <i class="fas fa-globe-asia fa-4x" style="color: #0056b3;"></i>
+                <h3>Destinos Asia</h3>
+                <p>Grados de Asia</p>
+            </a>
+            <a href="destinos_doble_grado.pdf" target="_blank" class="category-card">
+                <i class="fas fa-user-graduate fa-4x" style="color: #28a745;"></i>
+                <h3>Dobles Titulaciones</h3>
+                <p>Convenios Internacionales</p>
+            </a>
+            <a href="destinos_master_doctorado.pdf" target="_blank" class="category-card">
+                <i class="fas fa-microscope fa-4x" style="color: #6f42c1;"></i>
+                <h3>Máster y Doctorado</h3>
+                <p>Postgrado Internacional</p>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Erasmus Connect US - Proyecto Estudiantes Universidad de Sevilla</p>
+        </div>
+    </footer>
+    <script>
+        function showDestinations(type) {
+            // Hide all lists
+            document.querySelectorAll('.destination-list-container').forEach(el => el.style.display = 'none');
+
+            // Show selected list
+            if (type === 'erasmus') {
+                document.getElementById('erasmusList').style.display = 'block';
+            } else if (type === 'non-erasmus') {
+                document.getElementById('nonErasmusList').style.display = 'block';
+            }
+
+            // Optional: Scroll to list
+            setTimeout(() => {
+                const list = type === 'erasmus' ? document.getElementById('erasmusList') : document.getElementById('nonErasmusList');
+                list.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

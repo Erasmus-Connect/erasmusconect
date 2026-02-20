@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Becas Santander - Erasmus Connect US</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .timeline-full {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .calendar-card {
+            background: var(--white);
+            border-left: 8px solid var(--us-red);
+            padding: 25px 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .calendar-card:hover {
+            transform: scale(1.005);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left-color: var(--us-gold);
+        }
+
+        .calendar-card .card-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .calendar-card .icon-box {
+            min-width: 60px;
+            text-align: center;
+            color: var(--us-red);
+        }
+
+        .calendar-card h3 {
+            margin: 0 0 5px 0;
+            color: var(--us-red);
+            font-size: 1.4rem;
+        }
+
+        .calendar-card p {
+            color: #666;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .external-link {
+            color: var(--us-gold);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .info-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .info-section h4 {
+            color: var(--us-red);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--us-gold);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .calendar-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .calendar-card .card-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-university"></i>
+                Erasmus Connect <span>Universidad de Sevilla</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="destinos.html">Destinos</a></li>
+                    <li><a href="convalidaciones.html">Convalidaciones</a></li>
+                    <li><a href="foro.html">Foro</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 100%; padding: 0 40px;">
+        <div style="margin-top:40px;">
+            <a href="index.html" class="btn btn-secondary" style="margin-bottom: 20px;"><i
+                    class="fas fa-arrow-left"></i> Volver a Inicio</a>
+            <h2 class="section-title">Becas Santander Estudios | Erasmus 2026-2027</h2>
+            <p style="margin-left: 20px; color: #666; margin-bottom: 30px;">Información detallada sobre las ayudas
+                complementarias del Banco Santander.</p>
+        </div>
+
+        <div class="info-section" style="width: 100%; border-left: 8px solid var(--us-gold); margin-bottom: 30px;">
+            <h3 style="color: var(--us-red); margin-bottom: 15px;">¿Qué son las Becas Santander?</h3>
+            <p style="font-size: 1.1rem;">El Banco Santander, en colaboración con la Universidad de Sevilla, ofrece
+                ayudas económicas para estudiantes que hayan obtenido una plaza de movilidad Erasmus+ para el curso
+                2026-2027.</p>
+            <p style="margin-top: 10px; font-size: 1.1rem;">Estas ayudas tienen como objetivo fomentar la movilidad
+                internacional y apoyar a los estudiantes con mejores expedientes académicos o situaciones de
+                vulnerabilidad económica.</p>
+        </div>
+
+        <div class="timeline-full">
+            <!-- Bases -->
+            <a href="https://www.us.es/sites/default/files/becas-y-ayudas/becas-movilidad/propias/Bases%20de%20la%20convocatoria%20Banco%20Santander%20erasmus%202026-27_281125.pdf"
+                class="calendar-card" target="_blank">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-file-invoice-dollar fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Bases de la Convocatoria</h3>
+                        <p>Consulta los requisitos, criterios de selección y dotación económica de las becas.</p>
+                    </div>
+                </div>
+                <span class="external-link">Ver Bases PDF <i class="fas fa-external-link-alt"></i></span>
+            </a>
+
+            <!-- Anuncio -->
+            <a href="https://www.us.es/sites/default/files/becas-y-ayudas/becas-movilidad/propias/Anuncio%20Santander%20Erasmus%202026-27_281125.pdf"
+                class="calendar-card" target="_blank">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-bullhorn fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Anuncio Oficial</h3>
+                        <p>Publicación oficial de la Universidad de Sevilla sobre el programa de becas Santander.</p>
+                    </div>
+                </div>
+                <span class="external-link">Ver Anuncio PDF <i class="fas fa-external-link-alt"></i></span>
+            </a>
+
+            <!-- Registro -->
+            <div class="calendar-card" style="cursor: default; background: #fdf2f2;">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-edit fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Inscripción Obligatoria</h3>
+                        <p>Es imprescindible inscribirse en la plataforma de Becas Santander antes de la fecha límite
+                            para poder optar a la ayuda.</p>
+                        <div style="margin-top: 10px;">
+                            <a href="https://app.santanderopenacademy.com/es/program/becas-santander-para-erasmus-2026-2027"
+                                target="_blank" class="btn btn-primary" style="padding: 10px 20px;">Ir a la plataforma
+                                de inscripción</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Erasmus Connect US - Proyecto Estudiantes Universidad de Sevilla</p>
+        </div>
+    </footer>
+</body>
+
+</html>

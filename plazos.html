@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plazos - Erasmus Connect US</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .timeline-container {
+            width: 100%;
+            padding: 40px;
+            background: #fdfdfd;
+        }
+
+        .timeline-full {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .calendar-card {
+            background: var(--white);
+            border-left: 8px solid var(--us-red);
+            padding: 25px 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .calendar-card:hover {
+            transform: scale(1.005);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-card.current {
+            border-left-color: var(--us-gold);
+            background: #fffdf8;
+            outline: 1px solid #ffeeba;
+        }
+
+        .calendar-card .card-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .calendar-card .date-box {
+            min-width: 180px;
+            text-align: left;
+        }
+
+        .calendar-card .date-box .date {
+            font-weight: 800;
+            color: var(--us-red);
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .calendar-card.current .date-box .date {
+            color: var(--us-gold);
+        }
+
+        .calendar-card h3 {
+            margin: 0 0 5px 0;
+            color: var(--us-red);
+            font-size: 1.4rem;
+        }
+
+        .calendar-card p {
+            color: #666;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .status-pill {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .pill-completed {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .pill-current {
+            background: var(--us-gold);
+            color: white;
+            box-shadow: 0 4px 10px rgba(219, 174, 53, 0.3);
+        }
+
+        .pill-upcoming {
+            background: #f5f5f5;
+            color: #757575;
+        }
+
+        @media (max-width: 900px) {
+            .calendar-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .calendar-card .card-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .calendar-card .date-box {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-university"></i>
+                Erasmus Connect <span>Universidad de Sevilla</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="destinos.html">Destinos</a></li>
+                    <li><a href="convalidaciones.html">Convalidaciones</a></li>
+                    <li><a href="foro.html">Foro</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 100%; padding: 0 40px;">
+        <div style="margin-top:40px;">
+            <a href="index.html" class="btn btn-secondary" style="margin-bottom: 20px;"><i
+                    class="fas fa-arrow-left"></i> Volver a Inicio</a>
+            <h2 class="section-title">Calendario Oficial 2026-2027</h2>
+            <p style="margin-left: 20px; color: #666;">Cronograma general de la Convocatoria de Movilidad Internacional.
+            </p>
+        </div>
+
+        <div class="timeline-full">
+            <!-- Solicitud -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="date-box">
+                        <span class="date">3 - 30 NOV 2025</span>
+                    </div>
+                    <div>
+                        <h3>Presentación de Solicitudes</h3>
+                        <p>Envío de solicitudes online a través de la SEVIUS (Secretaría Virtual).</p>
+                    </div>
+                </div>
+                <span class="status-pill pill-completed">Finalizado</span>
+            </div>
+
+            <!-- Idiomas -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="date-box">
+                        <span class="date">Hasta 27 NOV 2025</span>
+                    </div>
+                    <div>
+                        <h3>Acreditación de Idiomas</h3>
+                        <p>Fecha límite para subir certificados de idiomas a la plataforma.</p>
+                    </div>
+                </div>
+                <span class="status-pill pill-completed">Finalizado</span>
+            </div>
+
+            <!-- Listado Provisional -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="date-box">
+                        <span class="date">12 DIC 2025</span>
+                    </div>
+                    <div>
+                        <h3>Listados Provisionales</h3>
+                        <p>Publicación de la relación provisional de admitidos y excluidos.</p>
+                    </div>
+                </div>
+                <span class="status-pill pill-completed">Publicado</span>
+            </div>
+
+            <!-- Alegaciones -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="date-box">
+                        <span class="date">Hasta 29 DIC 2025</span>
+                    </div>
+                    <div>
+                        <h3>Plazo de Alegaciones</h3>
+                        <p>Periodo para subsanar errores o reclamar faltas en el listado provisional.</p>
+                    </div>
+                </div>
+                <span class="status-pill pill-completed">Finalizado</span>
+            </div>
+
+            <!-- 1ª Adjudicación -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="date-box">
+                        <span class="date">13 ENE 2026</span>
+                    </div>
+                    <div>
+                        <h3>1ª Adjudicación Definitiva</h3>
+                        <p>Publicación de destinos asignados. Aceptación/Reserva hasta el 19 de enero.</p>
+                    </div>
+                </div>
+                <span class="status-pill pill-completed">Finalizado</span>
+            </div>
+
+            <!-- 2ª Adjudicación -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="date-box">
+                        <span class="date">21 ENE 2026</span>
+                    </div>
+                    <div>
+                        <h3>2ª Adjudicación</h3>
+                        <p>Turno de resultas. Aceptación/Reserva hasta el 23 de enero.</p>
+                    </div>
+                </div>
+                <span class="status-pill pill-completed">Finalizado</span>
+            </div>
+
+            <!-- 3ª Adjudicación -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="date-box">
+                        <span class="date">27 ENE 2026</span>
+                    </div>
+                    <div>
+                        <h3>3ª Adjudicación</h3>
+                        <p>Último turno de adjudicación. Aceptación/Reserva hasta el 30 de enero.</p>
+                    </div>
+                </div>
+                <span class="status-pill pill-completed">Finalizado</span>
+            </div>
+
+            <!-- Resultas Actual -->
+            <div class="calendar-card current">
+                <div class="card-info">
+                    <div class="date-box">
+                        <span class="date">4 FEB 2026</span>
+                    </div>
+                    <div>
+                        <h3>Convocatoria de Resultas</h3>
+                        <p>Publicación de plazas vacantes tras las adjudicaciones principales.</p>
+                    </div>
+                </div>
+                <span class="status-pill pill-current">Actual</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Erasmus Connect US - Proyecto Estudiantes Universidad de Sevilla</p>
+        </div>
+    </footer>
+</body>
+
+</html>

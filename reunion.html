@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reunión Informativa - Erasmus Connect US</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .timeline-full {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .calendar-card {
+            background: var(--white);
+            border-left: 8px solid var(--us-red);
+            padding: 25px 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .calendar-card.info-card {
+            border-left-color: var(--us-gold);
+            background: #fffdf8;
+        }
+
+        .calendar-card .card-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .calendar-card .icon-box {
+            min-width: 60px;
+            text-align: center;
+            color: var(--us-red);
+        }
+
+        .calendar-card h3 {
+            margin: 0 0 5px 0;
+            color: var(--us-red);
+            font-size: 1.4rem;
+        }
+
+        .calendar-card p {
+            color: #666;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .status-tag {
+            background: #eee;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #666;
+        }
+
+        @media (max-width: 900px) {
+            .calendar-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .calendar-card .card-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-university"></i>
+                Erasmus Connect <span>Universidad de Sevilla</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="destinos.html">Destinos</a></li>
+                    <li><a href="convalidaciones.html">Convalidaciones</a></li>
+                    <li><a href="foro.html">Foro</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 100%; padding: 0 40px;">
+        <div style="margin-top:40px;">
+            <a href="index.html" class="btn btn-secondary" style="margin-bottom: 20px;"><i
+                    class="fas fa-arrow-left"></i> Volver a Inicio</a>
+            <h2 class="section-title">Reunión Informativa para Adjudicatarios</h2>
+            <p style="margin-left: 20px; color: #666; margin-bottom: 30px;">Información clave sobre los pasos a seguir
+                tras recibir tu plaza de movilidad.</p>
+        </div>
+
+        <div class="timeline-full">
+            <!-- La Reunión -->
+            <div class="calendar-card info-card">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-users fa-3x" style="color: var(--us-gold);"></i>
+                    </div>
+                    <div>
+                        <h3>Sesión Informativa General</h3>
+                        <p>Una vez adjudicadas las plazas, el Centro Internacional realiza una reunión para informar de
+                            los trámites obligatorios.</p>
+                    </div>
+                </div>
+                <span class="status-tag">Fecha por confirmar</span>
+            </div>
+
+            <!-- Próximos pasos -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-clipboard-check fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Trámites Post-Adjudicación</h3>
+                        <p>Aceptación de la plaza, reserva de plaza por resultas y firma del compromiso de estudios
+                            (L.A.).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentación -->
+            <div class="calendar-card">
+                <div class="card-info">
+                    <div class="icon-box">
+                        <i class="fas fa-file-pdf fa-3x"></i>
+                    </div>
+                    <div>
+                        <h3>Instrucciones de la Convocatoria</h3>
+                        <p>Consulta las bases y las instrucciones oficiales para cumplimentar tu solicitud y trámite.
+                        </p>
+                        <div style="margin-top: 10px;">
+                            <a href="https://www.us.es/sites/default/files/becas-y-ayudas/becas-movilidad/propias/Convocatoria%20general%20de%20movilidad%20internacional%202026-27_031125.pdf"
+                                target="_blank" style="color: var(--us-red); margin-right: 20px;">Bases PDF</a>
+                            <a href="https://www.us.es/sites/default/files/becas-y-ayudas/becas-movilidad/propias/Instrucciones%20solicitudes%20alumnos%202026-27.pdf"
+                                target="_blank" style="color: var(--us-red);">Instrucciones PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Erasmus Connect US - Proyecto Estudiantes Universidad de Sevilla</p>
+        </div>
+    </footer>
+</body>
+
+</html>

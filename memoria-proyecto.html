@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoria del Proyecto - Erasmus Connect US</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --us-red: #990000;
+            --us-gold: #c5a847;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 20mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 3px solid var(--us-red);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-area {
+            color: var(--us-red);
+            font-size: 2.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            color: var(--us-red);
+            margin-top: 0;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--us-red);
+            border-left: 5px solid var(--us-gold);
+            padding-left: 15px;
+            margin-top: 25px;
+            font-size: 1.3rem;
+        }
+
+        h3 {
+            color: #444;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box {
+            background: #fdf6f6;
+            border: 1px solid #f5e1e1;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .innovation-tag {
+            background: var(--us-red);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .student-note {
+            font-style: italic;
+            background: #fcfcfc;
+            border-bottom: 2px solid #eee;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            border-radius: 8px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                height: auto;
+                padding: 15mm;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--us-red);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="btn-print no-print" onclick="window.print()">
+        <i class="fas fa-file-pdf"></i> Guardar como PDF Final
+    </button>
+
+    <div class="page">
+        <header>
+            <div class="logo-area">
+                <i class="fas fa-university"></i>
+                Erasmus Connect US
+            </div>
+            <p>Reto Tecnológico: Dos Ingenieros ETSI Mejorando la Experiencia Erasmus</p>
+        </header>
+
+        <h1>Memoria del Proyecto</h1>
+
+        <div class="student-note">
+            "Este proyecto nace de un reto entre amigos. Vimos la web actual de la universidad un poco obsoleta y
+            decidimos aplicar lo que sabemos para crear una solución real para nosotros, los estudiantes."
+        </div>
+
+        <h2>1. Introducción y Propósito</h2>
+        <p><strong>Erasmus Connect US</strong> no es solo una página web; es nuestra respuesta a la falta de
+            herramientas modernas para la movilidad en la US. Como estudiantes de ingeniería, sabemos lo frustrante que
+            es navegar por portales institucionales anticuados. Hemos diseñado este portal para centralizar toda la
+            información de los 101 destinos de la ETSI con una interfaz rápida, limpia y 100% pensada para el alumno.
+        </p>
+
+        <h2>2. Desglose de Funcionalidades (Ventanas)</h2>
+
+        <h3>2.1. Panel de Control (index.html)</h3>
+        <p>Es la cara visible del proyecto. Usando un estilo <em>Glassmorphism</em>, hemos creado un acceso directo a lo
+            que importa. Incluye tarjetas de noticias dinámicas para estar al día de reuniones y becas sin perderse en
+            menús infinitos.</p>
+
+        <h3>2.2. Buscador de Destinos (destinos.html)</h3>
+        <p>Un desglose total de los 28 países y los 101 destinos. Permite consultar de un vistazo plazas, idiomas y
+            duraciones, facilitando la toma de decisiones inicial del estudiante.</p>
+
+        <h3>2.3. Hub de Convalidaciones (convalidaciones.html)</h3>
+        <p>Centralizamos los <strong>101 archivos PDF oficiales</strong>. El alumno puede buscar por universidad y ver
+            contratos de estudios aprobados en años anteriores, eliminando miedos y agilizando el papeleo académico.</p>
+
+        <h3>2.4. LA GRAN NOVEDAD: El Foro de Comunidad <span class="innovation-tag">Novedad Exclusiva</span></h3>
+        <div class="highlight-box">
+            <p><strong>Esto no existe en la web oficial de la US.</strong> Nuestra gran idea es crear una red de
+                conocimiento compartido:</p>
+            <ul>
+                <li><strong>Interacción Estudiante a Estudiante</strong>: Un foro donde los veteranos cuentan lo que de
+                    verdad importa (alojamiento, vida, trucos universitarios).</li>
+                <li><strong>Hilos Dinámicos</strong>: Cada uno de los 101 destinos tiene su propio espacio de discusión
+                    estructurado por tarjetas.</li>
+                <li><strong>Respuestas Anidadas</strong>: Para que la información no se pierda y sea fácil encontrar
+                    soluciones a problemas comunes que solo un Erasmus conoce.</li>
+            </ul>
+        </div>
+
+        <h3>2.5. Línea de Tiempos (plazos.html)</h3>
+        <p>Una ventana dedicada a que no se te pase ni un plazo. Línea de tiempo visual con las fases administrativas
+            críticas del proceso.</p>
+
+        <h3>2.6. Contacto Profesional (contacto.html)</h3>
+        <p>Formulario de soporte limpio. Actualmente no envía a una cuenta real por no tener una oficial de la US, pero
+            **se puede configurar en segundos** para que los mensajes lleguen a cualquier correo universitario.</p>
+
+        <h2>3. Conclusión y Futuro: Un Llamado a la Universidad</h2>
+        <p>Creemos que este es el futuro de la movilidad en la US. Nuestra intención es enviar esta página a la
+            universidad para ver qué podemos hacer juntos o cómo seguir mejorándola con su soporte. Erasmus Connect US
+            es una herramienta lista para usar, pulida y superior a lo que se ofrece actualmente.</p>
+        <p><strong>Porque un Erasmus inolvidable empieza por una planificación sin estrés.</strong></p>
+
+        <div class="footer">
+            © 2024 Erasmus Connect US - Proyecto Realizado por Alumnos de Ingeniería US
+        </div>
+    </div>
+
+</body>
+
+</html>

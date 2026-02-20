@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificación Acuerdo - Erasmus Connect US</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .timeline-full {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .info-strip {
+            background: var(--white);
+            border-left: 8px solid var(--us-red);
+            padding: 25px 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .info-strip:hover {
+            transform: scale(1.005);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left-color: var(--us-gold);
+        }
+
+        .info-strip .icon-box {
+            min-width: 60px;
+            text-align: center;
+            color: var(--us-red);
+        }
+
+        .info-strip .card-content {
+            flex: 1;
+        }
+
+        .info-strip h3 {
+            margin: 0 0 5px 0;
+            color: var(--us-red);
+            font-size: 1.2rem;
+            line-height: 1.3;
+        }
+
+        .info-strip p {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .download-box {
+            text-align: right;
+            min-width: 150px;
+            color: var(--us-gold);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .page-header {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            padding-left: 10px;
+            border-left: 5px solid var(--us-gold);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--us-red);
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--us-gold);
+            transform: translateX(-5px);
+        }
+
+        .file-type-icon {
+            font-size: 2.5rem;
+        }
+
+        .type-docx {
+            color: #2b579a;
+        }
+
+        .type-pdf {
+            color: #f40f02;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-university"></i>
+                Erasmus Connect <span>Universidad de Sevilla</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="destinos.html">Destinos</a></li>
+                    <li><a href="convalidaciones.html" class="active">Convalidaciones</a></li>
+                    <li><a href="foro.html">Foro</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 100%; padding: 0 40px;">
+        <div class="page-header">
+            <a href="convalidaciones.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a
+                Convalidaciones</a>
+            <h2 class="section-title" style="margin:0;">Modificación Acuerdo de Estudios</h2>
+            <p style="color: #666; margin-top: 5px;">Procedimientos y documentos necesarios para cambios en tu Learning
+                Agreement.</p>
+        </div>
+
+        <div class="timeline-full">
+            <!-- Procedimiento -->
+            <a href="Modificación acuerdo de estudios/Procedimiento_Modificacion_Acuerdo_2024-25.pdf" target="_blank"
+                class="info-strip">
+                <div class="icon-box">
+                    <i class="fas fa-file-pdf file-type-icon type-pdf"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Procedimiento Modificación Acuerdo 2024-25</h3>
+                    <p>Guía paso a paso sobre cómo solicitar cambios en el acuerdo de estudios para el curso actual.</p>
+                </div>
+                <div class="download-box">
+                    <i class="fas fa-download"></i> Descargar
+                </div>
+            </a>
+
+            <!-- Modelo modificación matrícula -->
+            <a href="Modificación acuerdo de estudios/Modelo_modificación_matrícula.pdf" target="_blank"
+                class="info-strip">
+                <div class="icon-box">
+                    <i class="fas fa-file-pdf file-type-icon type-pdf"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Modelo Modificación Matrícula</h3>
+                    <p>Formulario oficial en PDF para solicitar cambios en tu matrícula de la US.</p>
+                </div>
+                <div class="download-box">
+                    <i class="fas fa-download"></i> Descargar
+                </div>
+            </a>
+
+            <!-- Instancia eliminación matrícula -->
+            <a href="Modificación acuerdo de estudios/Instancia_eliminación_matrícula.pdf" target="_blank"
+                class="info-strip">
+                <div class="icon-box">
+                    <i class="fas fa-file-pdf file-type-icon type-pdf"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Instancia Eliminación Matrícula</h3>
+                    <p>Documento necesario en caso de requerir la baja de alguna asignatura matriculada.</p>
+                </div>
+                <div class="download-box">
+                    <i class="fas fa-download"></i> Descargar
+                </div>
+            </a>
+
+            <!-- Impreso SICUE -->
+            <a href="Modificación acuerdo de estudios/Impreso_SICUE.docx" target="_blank" class="info-strip">
+                <div class="icon-box">
+                    <i class="fas fa-file-word file-type-icon type-docx"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Impreso SICUE</h3>
+                    <p>Formulario de modificación específico para el programa de movilidad nacional SICUE.</p>
+                </div>
+                <div class="download-box">
+                    <i class="fas fa-download"></i> Descargar
+                </div>
+            </a>
+
+            <!-- Instancia Internacional -->
+            <a href="Modificación acuerdo de estudios/Instancia_Internacional.docx" target="_blank" class="info-strip">
+                <div class="icon-box">
+                    <i class="fas fa-file-word file-type-icon type-docx"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Instancia Internacional</h3>
+                    <p>Documento Word para solicitudes relacionadas con movilidad internacional.</p>
+                </div>
+                <div class="download-box">
+                    <i class="fas fa-download"></i> Descargar
+                </div>
+            </a>
+
+            <!-- Instancia Genérica -->
+            <a href="Modificación acuerdo de estudios/Instancia_genérica.docx" target="_blank" class="info-strip">
+                <div class="icon-box">
+                    <i class="fas fa-file-word file-type-icon type-docx"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Instancia Genérica</h3>
+                    <p>Modelo de instancia general para cualquier otro trámite no especificado.</p>
+                </div>
+                <div class="download-box">
+                    <i class="fas fa-download"></i> Descargar
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Erasmus Connect US - Proyecto Estudiantes Universidad de Sevilla</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
