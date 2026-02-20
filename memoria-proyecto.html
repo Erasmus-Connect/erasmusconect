@@ -13,6 +13,10 @@
             --text: #333;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -25,8 +29,9 @@
         .page {
             width: 210mm;
             min-height: 297mm;
-            padding: 20mm;
-            margin: 20mm auto;
+            padding: 25mm;
+            /* Increased padding */
+            margin: 10mm auto;
             background: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -118,19 +123,23 @@
 
         @media print {
             @page {
-                margin: 0;
+                margin: 20mm;
+                /* Standard page margins */
+                size: A4;
             }
 
             body {
-                background: none;
+                background: white;
+                margin: 0;
+                padding: 0;
             }
 
             .page {
                 margin: 0;
-                box-shadow: none;
+                padding: 0;
                 width: 100%;
-                height: auto;
-                padding: 15mm;
+                min-height: auto;
+                box-shadow: none;
             }
 
             .no-print {
