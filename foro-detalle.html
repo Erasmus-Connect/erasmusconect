@@ -688,12 +688,14 @@
             const hasReplies = replies && replies.length > 0;
             const dateStr = msg.created_at ? new Date(msg.created_at).toLocaleDateString() : (msg.date_str || 'Reciente');
 
-            // Ownership check
-            const isMine = window.myMessageIds && window.myMessageIds.includes(msg.id);
+            // Ownership check (plus Admin Mode)
+            const isAdmin = localStorage.getItem('admin_mode') === 'true';
+            const isMine = isAdmin || (window.myMessageIds && window.myMessageIds.includes(msg.id));
+
             const actionsHtml = isMine ? `
                 <div class="msg-actions">
-                    <button class="btn-action" onclick="editMessage(${msg.id})"><i class="fas fa-pencil-alt"></i> Editar</button>
-                    <button class="btn-action btn-delete" onclick="deleteMessage(${msg.id})"><i class="fas fa-trash"></i> Borrar</button>
+                    <button class="btn-action" onclick="editMessage(${msg.id})"><i class="fas fa-pencil-alt"></i> ${isAdmin ? '[ADMIN] Editar' : 'Editar'}</button>
+                    <button class="btn-action btn-delete" onclick="deleteMessage(${msg.id})"><i class="fas fa-trash"></i> ${isAdmin ? '[ADMIN] Borrar' : 'Borrar'}</button>
                 </div>
             ` : '';
 
