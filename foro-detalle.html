@@ -284,6 +284,108 @@
             background: #fffafa;
         }
 
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 550px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlide 0.3s ease-out;
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--us-gold);
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            color: var(--us-red);
+            margin: 0;
+        }
+
+        .modal-body .form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-body label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .modal-body input,
+        .modal-body textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .modal-body textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-modal-cancel {
+            background: #eee;
+            color: #666;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-modal-submit {
+            background: var(--us-red);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         .container-custom {
             max-width: 1200px;
             margin: 0 auto;
@@ -375,7 +477,7 @@
 
         <div class="container-custom" style="padding-top: 20px;">
             <div style="text-align: right;">
-                <a href="#" class="new-thread-btn" onclick="alert('Abriendo editor de nueva consulta...')"><i
+                <a href="javascript:void(0)" class="new-thread-btn" onclick="openNewQuestionModal()"><i
                         class="fas fa-plus"></i> Nueva Pregunta</a>
             </div>
 
@@ -394,6 +496,31 @@
                 <p>&copy; 2024 erasmusconect - Proyecto Estudiantes Universidad de Sevilla</p>
             </div>
         </footer>
+
+        <!-- Modal for New Question -->
+        <div class="modal-overlay" id="newQuestionModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Nueva Consulta</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Tu Nombre</label>
+                        <input type="text" id="newQuestionName" placeholder="Ej: Francisco García">
+                    </div>
+                    <div class="form-group">
+                        <label>Tu Pregunta</label>
+                        <textarea id="newQuestionBody"
+                            placeholder="Escribe aquí tu duda sobre este destino..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-modal-cancel" onclick="closeNewQuestionModal()">Cancelar</button>
+                    <button class="btn-modal-submit" id="btnSubmitQuestion" onclick="submitNewQuestion()">Publicar
+                        Pregunta</button>
+                </div>
+            </div>
+        </div>
 
         <!-- Load Data -->
         <script src="foro-data.js"></script>
@@ -492,6 +619,62 @@
             }
 
             renderMessages();
+
+            // Modal Functions
+            function openNewQuestionModal() {
+                document.getElementById('newQuestionModal').style.display = 'flex';
+                document.getElementById('newQuestionName').focus();
+            }
+
+            function closeNewQuestionModal() {
+                document.getElementById('newQuestionModal').style.display = 'none';
+            }
+
+            function submitNewQuestion() {
+                const nameInput = document.getElementById('newQuestionName');
+                const bodyInput = document.getElementById('newQuestionBody');
+                const btn = document.getElementById('btnSubmitQuestion');
+
+                const name = nameInput.value.trim();
+                const body = bodyInput.value.trim();
+
+                if (name === '' || body === '') {
+                    alert('Por favor, rellena todos los campos.');
+                    return;
+                }
+
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publicando...';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    // Create new message object
+                    const newMessage = {
+                        user: name,
+                        avatar: name.charAt(0).toUpperCase(),
+                        date: 'Hoy (Hace unos segundos)',
+                        badge: 'PREGUNTA NUEVA',
+                        badgeClass: 'badge-pregunta',
+                        body: body,
+                        replies: []
+                    };
+
+                    // Add to local forum state
+                    currentForum.messages.unshift(newMessage);
+
+                    // Re-render
+                    renderMessages();
+
+                    // Success feedback & Close
+                    nameInput.value = '';
+                    bodyInput.value = '';
+                    btn.innerHTML = 'Publicar Pregunta';
+                    btn.disabled = false;
+                    closeNewQuestionModal();
+
+                    // Scroll to top
+                    window.scrollTo({ top: 300, behavior: 'smooth' });
+                }, 1000);
+            }
 
             // Buscador de palabras clave
             const searchInput = document.getElementById('keywordSearch');
