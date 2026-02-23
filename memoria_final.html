@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memoria de Proyecto - Erasmus Connect US (Alumnos US)</title>
+    <title>Memoria Descriptiva - Erasmus Connect US (Final)</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Outfit:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
@@ -18,7 +18,6 @@
             --text-light: #555555;
             --bg-light: #fdfdfd;
             --border-color: #eee;
-            --accent: #e74c3c;
         }
 
         @page {
@@ -33,24 +32,25 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            line-height: 1.9;
+            line-height: 2.0;
+            /* Increased for length */
             color: var(--text-dark);
             background-color: #fff;
             margin: 0;
             padding: 0;
-            font-size: 1.1rem;
-            /* Slightly larger for length and readability */
+            font-size: 1.15rem;
+            /* Increased for length */
         }
 
         .container {
             max-width: 850px;
             margin: 0 auto;
-            padding: 60px;
+            padding: 20px 60px;
         }
 
-        /* PORTADA MODERNA */
+        /* PORTADA */
         .cover {
-            min-height: 100vh;
+            min-height: 95vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -58,31 +58,35 @@
             text-align: center;
             border: 20px solid var(--us-red);
             padding: 40px;
-            margin-bottom: 80px;
-            background: radial-gradient(circle at top right, #fff5f5, #fff);
-        }
-
-        .cover-icon {
-            font-size: 8rem;
-            color: var(--us-red);
-            margin-bottom: 20px;
+            margin-bottom: 100px;
+            background: linear-gradient(135deg, #fff 0%, #fffef0 100%);
         }
 
         .cover h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: 4rem;
+            font-size: 3.8rem;
             color: var(--us-red);
-            text-transform: uppercase;
             margin: 0;
-            line-height: 1;
+            text-transform: uppercase;
         }
 
-        .cover p.tagline {
+        .cover .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            color: var(--us-dark);
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        .cover .slogan {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.8rem;
             color: var(--us-gold);
-            margin: 20px 0 60px 0;
+            margin: 50px 0;
             font-weight: 700;
+            border-top: 2px solid var(--us-gold);
+            border-bottom: 2px solid var(--us-gold);
+            padding: 10px 0;
         }
 
         .cover .meta {
@@ -92,129 +96,101 @@
             width: 100%;
         }
 
-        .version-label {
-            background: var(--us-red);
-            color: white;
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        /* SECCIONES */
-        h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
-            color: var(--us-red);
-            margin-top: 100px;
-            margin-bottom: 30px;
-            border-bottom: 5px solid var(--us-gold);
-            padding-bottom: 10px;
+        /* INDICE */
+        .toc {
             page-break-before: always;
+            margin-bottom: 100px;
         }
 
-        h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            color: var(--us-dark);
-            margin-top: 60px;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff5f5, #fff);
-            padding: 10px 20px;
-            border-left: 10px solid var(--us-red);
+        .toc h2 {
+            border-bottom: 2px solid var(--us-red);
+            padding-bottom: 15px;
         }
 
-        p {
-            margin-bottom: 25px;
-            text-align: justify;
-        }
-
-        strong {
-            color: var(--us-red);
-        }
-
-        /* LISTAS */
-        ul {
-            margin-bottom: 40px;
-        }
-
-        li {
-            margin-bottom: 15px;
-            padding-left: 10px;
-        }
-
-        /* CAJAS DE TEXTO */
-        .quote-box {
-            background: var(--bg-light);
-            border: 2px dashed var(--us-gold);
-            padding: 40px;
-            margin: 40px 0;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: var(--us-red);
-            position: relative;
-        }
-
-        .personal-note {
-            background: #fdf2f2;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
-            border-left: 15px solid var(--us-red);
-        }
-
-        /* TABLA DE CONTENIDOS */
-        .index-page {
-            page-break-before: always;
-            margin-bottom: 120px;
-        }
-
-        .index-page h2 {
-            page-break-before: auto;
-        }
-
-        .index-list {
+        .toc ul {
             list-style: none;
             padding: 0;
         }
 
-        .index-list li {
+        .toc li {
             font-size: 1.3rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-bottom: 1px dotted #ccc;
             display: flex;
             justify-content: space-between;
         }
 
-        .index-list a {
+        .toc a {
             color: var(--us-red);
             text-decoration: none;
-            font-weight: 700;
         }
 
-        .page-num {
-            color: var(--us-gold);
+        /* SECCIONES */
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.3rem;
+            color: var(--us-red);
+            margin-top: 100px;
+            /* Force spacing for physical page feel */
+            margin-bottom: 40px;
+            border-left: 15px solid var(--us-red);
+            padding-left: 20px;
+            page-break-before: always;
         }
 
-        /* FOOTER */
-        footer {
-            margin-top: 150px;
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            color: var(--us-dark);
+            margin-top: 60px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--us-gold);
+            display: inline-block;
+        }
+
+        p {
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #fdf2f2;
+            border-radius: 10px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 1px solid var(--us-red);
+            font-style: italic;
+        }
+
+        ul {
+            margin-bottom: 40px;
+        }
+
+        li {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            margin-top: 100px;
+            padding: 40px;
             text-align: center;
-            border-top: 2px solid var(--us-gold);
-            padding-top: 40px;
-            padding-bottom: 80px;
+            border-top: 3px solid var(--us-gold);
         }
 
-        .web-link {
+        .web-link-box {
             background: var(--us-red);
             color: white !important;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin: 60px 0;
+        }
+
+        .web-link-box a {
+            color: white;
             font-weight: 800;
-            display: inline-block;
-            margin-top: 20px;
+            font-size: 1.3rem;
+            text-decoration: underline;
         }
 
         .new-page {
@@ -228,251 +204,198 @@
     <div class="container">
         <!-- PORTADA -->
         <div class="cover">
-            <div class="cover-icon">✈️🏛️</div>
+            <div style="font-size: 5rem;">🌍</div>
             <h1>Erasmus Connect US</h1>
-            <p class="tagline">¡De estudiantes, para estudiantes!</p>
-            <div class="version-label">Versión ErasmusConnect_v0 (Estable)</div>
+            <div class="subtitle">MEMORIA DESCRIPTIVA DE PROYECTO</div>
+            <div class="slogan">De estudiantes para estudiantes:<br>Digitalizando la aventura Erasmus</div>
+
             <div class="meta">
-                <p><strong>Autores:</strong> Alumnos de Ingeniería de la US</p>
-                <p><strong>Destino:</strong> Universidad de Sevilla (Propuesta Oficial)</p>
+                <p><strong>Autor:</strong> Estudiante Universidad de Sevilla</p>
+                <p><strong>Versión:</strong> 0.1 RC (ErasmusConnect_0)</p>
                 <p><strong>Fecha:</strong> Febrero 2024</p>
             </div>
         </div>
 
         <!-- INDICE -->
-        <div class="index-page">
-            <h2>Índice del Proyecto</h2>
-            <ul class="index-list">
-                <li><a href="#inicio">1. ¿Cómo empezó todo? (El origen personal)</a> <span class="page-num">02</span>
-                </li>
-                <li><a href="#problema">2. El Caos de irse de Erasmus (El Problema)</a> <span class="page-num">04</span>
-                </li>
-                <li><a href="#vision">3. Nuestra Solución: Erasmus Connect US</a> <span class="page-num">06</span></li>
-                <li><a href="#foro">4. EL FORO: La Revolución en la Nube</a> <span class="page-num">08</span></li>
-                <li><a href="#ventanas">5. Recorrido por el Portal (Funcionalidades)</a> <span
-                        class="page-num">12</span></li>
-                <li><a href="#futuro">6. El Plan de Futuro (Lo que queremos vender)</a> <span class="page-num">15</span>
-                </li>
-                <li><a href="#tecnico">7. Especificaciones Técnicas (Bajo el capó)</a> <span class="page-num">20</span>
-                </li>
-                <li><a href="#conclusion">8. Conclusión Final</a> <span class="page-num">24</span></li>
+        <div class="toc">
+            <h2>Índice del Documento</h2>
+            <ul>
+                <li><a href="#intro">1. ¿POR QUÉ NACE ESTA WEB?</a> <span>Pág. 02</span></li>
+                <li><a href="#analisis">2. ANÁLISIS DE FUNCIONALIDADES (VENTANA A VENTANA)</a> <span>Pág. 04</span></li>
+                <li><a href="#foro">3. EL FORO: EL CORAZÓN DE LA PLATAFORMA</a> <span>Pág. 07</span></li>
+                <li><a href="#tecnico">4. ESPECIFICACIONES TÉCNICAS (BAJO EL CAPÓ)</a> <span>Pág. 10</span></li>
+                <li><a href="#marketing">5. MARKETING Y VISIÓN DE FUTURO</a> <span>Pág. 12</span></li>
+                <li><a href="#conclusion">6. CONCLUSIÓN</a> <span>Pág. 14</span></li>
             </ul>
         </div>
 
-        <div id="inicio" class="new-page"></div>
+        <div id="intro" class="new-page"></div>
 
-        <h2>1. ¿Cómo empezó todo? (El origen personal)</h2>
-        <p>Pues mira, para ser sinceros, esta idea no salió de una clase teórica aburrida ni de un libro de texto de
-            marketing. <strong>Salió de la frustración total y absoluta</strong>. Somos dos estudiantes de la
-            Universidad de Sevilla (US), alumnos de ingeniería de la ETSI, y lo más importante es que uno de nosotros
-            está ahora mismo viviendo su propio Erasmus fuera de España.</p>
+        <h2>1. ¿POR QUÉ NACE ESTA WEB?</h2>
+        <p>La idea de <strong>Erasmus Connect US</strong> no salió de un despacho cómodo ni de una reunión de
+            profesores; salió de la realidad pura y dura. Soy un estudiante de la Universidad de Sevilla que actualmente
+            está viviendo su propia aventura Erasmus. Al enfrentarme a todo el proceso previo y a la estancia aquí, me
+            di cuenta de un problema enorme que todos mis compañeros comparten.</p>
 
-        <div class="personal-note">
-            "Imagínate la escena: estás preparando el viaje de tu vida, tienes mil papeles que rellenar, no sabes dónde
-            vas a dormir, ni qué asignaturas te van a validar de verdad... y cuando entras en la web oficial de
-            movilidad, te encuentras con algo que parece diseñado en los años 2000."
+        <div class="highlight-box">
+            "La web oficial de la universidad está anticuada, es difícil de navegar y la información está 'enterrada' en
+            menús infinitos que parecen laberintos. Al final, los estudiantes terminamos más estresados por la web que
+            por el propio viaje."
         </div>
 
-        <p>Al preparar el viaje, nos dimos cuenta de que la plataforma oficial de la universidad para el Erasmus está,
-            por decirlo suavemente, un poco <strong>obsoleta</strong>. No es que la información no esté; es que buscarla
-            es como un juego de rol donde tienes que pinchar en diez sitios diferentes para encontrar un PDF que luego
-            no abre correctamente en el móvil.</p>
+        <p>Me propuse un reto personal: crear desde cero una plataforma que yo mismo querría usar. Una web rápida, con
+            un diseño limpio y, sobre todo, que resolviera el mayor miedo de cualquier Erasmus: <strong>la
+                incertidumbre</strong>. </p>
 
-        <p>Estando ya uno de nosotros instalado en su ciudad Erasmus, nos dimos cuenta de que el mayor valor no son solo
-            los papeles del BOJA, sino los consejos de los que ya estuvieron allí antes. "¿Por qué no tenemos un sitio
-            propio donde los alumnos de la US podamos vernos y ayudarnos?". De esa pregunta nació el reto. Dejamos de
-            quejarnos del sistema y decidimos construirlo nosotros mismos.</p>
+        <p>A menudo, los alumnos nos encontramos con que no sabemos qué papeles pedir, cuándo acaba un plazo o si la
+            ciudad a la que vamos es realmente lo que buscamos. Esta es la <strong>Versión 0</strong>, un punto de
+            partida con un potencial brutal para cambiar cómo nos movemos por el mundo y cómo la US gestiona a sus
+            alumnos internacionales.</p>
 
-        <div id="problema" class="new-page"></div>
+        <p>Queremos pasar de ser sujetos pasivos que reciben PDFs a ser protagonistas de nuestra propia movilidad. Este
+            proyecto es la herramienta para que eso ocurra.</p>
 
-        <h2>2. El Caos de irse de Erasmus (El Problema)</h2>
-        <p>Cuando un estudiante de la US decide dar el paso y pedir una movilidad internacional, se enfrenta a un
-            desierto de información práctica. La universidad cumple con la parte administrativa: te dice cuántas plazas
-            hay y cuánto dinero te van a dar. Pero <strong>un Erasmus es mucho más que un trámite</strong>.</p>
+        <div id="analisis" class="new-page"></div>
 
-        <h3>El vacío de información</h3>
-        <p>Nosotros mismos pasamos por esto. Te hacías mil preguntas:</p>
+        <h2>2. ANÁLISIS DETALLADO DE LAS FUNCIONALIDADES</h2>
+        <p>Aquí es donde ocurre la magia del desarrollo. He diseñado cada apartado de la web pensando en el "viaje" real
+            que hace un estudiante desde que tiene la idea hasta que vuelve a casa.</p>
+
+        <h3>A. El Panel Principal (Home)</h3>
+        <p>No queremos que el alumno pierda el tiempo en menús que no llevan a ningún lado. En la pantalla principal, el
+            usuario encuentra acceso directo a lo que realmente importa. Se acabó el dar diez clics para encontrar un
+            enlace.</p>
+        <p>He adaptado el diseño para que, tanto en móvil como en ordenador (donde ahora luce un flamante layout de 3
+            columnas), los botones sean grandes, claros y visualmente atractivos. Es el centro de mando desde donde se
+            redirige al alumno a las becas, los destinos, el soporte o las reuniones informativas. Es la cara moderna de
+            la US.</p>
+
+        <h3>B. El Buscador de Destinos (La base de datos)</h3>
+        <p>He volcado de forma manual y estructurada toda la información de los <strong>101 destinos disponibles en la
+                ETSI</strong>, permitiendo que el alumno no tenga que bucear en tablas de Excel interminables.</p>
         <ul>
-            <li>¿En ese destino de Polonia es verdad que los exámenes son orales?</li>
-            <li>¿El alquiler de un piso en Múnich es tan caro como dicen?</li>
-            <li>¿Hay buena comunidad de españoles en esa facultad de Italia?</li>
-            <li>¿Qué asignaturas de tercero me convalida realmente el profesor de aquí?</li>
+            <li><strong>Filtros inteligentes:</strong> Puedes buscar por países o por tipos de programa (Erasmus+, No
+                Erasmus, Asia, etc.) con un solo clic.</li>
+            <li><strong>Información útil:</strong> No solo ves el nombre de la ciudad; tienes acceso directo a los
+                listados de plazas y documentos que antes estaban perdidos en carpetas del Drive de la universidad o en
+                subpáginas que nadie visita.</li>
         </ul>
-
-        <p>Para resolver esto, hoy en día los alumnos de la US nos pasamos meses saltando de un sitio a otro: grupos de
-            WhatsApp que se llenan y se vuelven un caos de notificaciones, hilos de Twitter (X) de hace cuatro años, o
-            preguntando por mensaje directo en Instagram a gente desconocida que ves que ha estado allí. Es un sistema
-            <strong>ineficiente y solitario</strong>.</p>
-
-        <p>Queríamos acabar con esa "soledad del estudiante internacional". Queríamos una web que lo tuviese TODO en una
-            sola pestaña del navegador.</p>
-
-        <div id="vision" class="new-page"></div>
-
-        <h2>3. Nuestra Solución: Erasmus Connect US</h2>
-        <p><strong>Erasmus Connect US</strong> no es solo una página web más; es el portal que nosotros, como alumnos,
-            siempre hemos querido tener. Lo hemos construido pensando en que sea rápido, visual y, sobre todo, útil.</p>
-
-        <h3>Filosofía del Diseño</h3>
-        <p>Nada más entrar en la web, queríamos que el alumno se sintiese "en casa". Hemos usado los colores
-            <strong>Rojo y Oro</strong> de la Universidad de Sevilla, pero con un diseño fresco. Olvida las listas de
-            enlaces azules subrayados. Hemos apostado por <strong>tarjetas dinámicas</strong>, iconos grandes y botones
-            que hacen que navegar sea casi como usar una App del móvil.</p>
-
-        <div class="quote-box">
-            "Queríamos que, con tres clics, un estudiante pudiese saber qué plazas tiene, descargar el historial de
-            convalidaciones y preguntar a un veterano cuánto cuesta el transporte en su futura ciudad."
-        </div>
 
         <div id="foro" class="new-page"></div>
 
-        <h2>4. EL FORO: La Revolución en la Nube</h2>
-        <p>Aquí es donde nos hemos "vaciado" como creadores. Estamos convencidos de que el <strong>Foro Erasmus
-                Connect</strong> es la pieza que le falta a la universidad para dar un salto de calidad en su gestión de
-            movilidad.</p>
+        <h2>3. EL FORO: EL CORAZÓN DE LA PLATAFORMA</h2>
+        <p>Este es el apartado más importante y el que marca la diferencia con cualquier otra web universitaria que
+            exista actualmente. Hasta ahora, si querías saber si una asignatura era fácil en Polonia o dónde buscar piso
+            en Italia, tenías que buscar grupos de WhatsApp de desconocidos que luego se borraban o se perdían al
+            cambiar de móvil.</p>
 
-        <h3>4.1. Conocimiento Permanente vs. Grupos de Chat</h3>
-        <p>El gran fallo de los grupos de WhatsApp o Telegram es que la información muere con el curso escolar. Los
-            consejos brillantes que alguien dio en septiembre se pierden en julio. En nuestro foro, <strong>la
-                información queda registrada en la nube</strong>.</p>
+        <h3>¿Cómo funciona nuestro foro?</h3>
+        <p>Hemos diseñado un ecosistema vivo y persistente basado en las necesidades reales del estudiante:</p>
 
-        <h3>4.2. Tecnología de Vanguardia (Supabase)</h3>
-        <p>No hemos hecho una sección de comentarios simple. Hemos integrado el sistema con <strong>Supabase
-                (PostgreSQL)</strong>. ¿Qué significa esto para el usuario?</p>
         <ul>
-            <li><strong>Persistencia Real:</strong> Los mensajes no desaparecen. Todo se guarda de forma segura en una
-                base de datos profesional.</li>
-            <li><strong>Tiempo Real:</strong> Si alguien te responde a una duda sobre un piso en Lovaina, lo ves al
-                instante.</li>
-            <li><strong>Gestión de Propiedad:</strong> Cada estudiante tiene el control. Si pones algo y luego quieres
-                corregirlo o borrarlo, puedes hacerlo. El sistema sabe perfectamente qué mensaje es tuyo.</li>
+            <li><strong>Hilos por Destino:</strong> Cada ciudad y país tiene su propio espacio. Si vas a Múnich, entras
+                directamente en el hilo de Múnich. Si vas a Cracovia, entras en Cracovia. Así de fácil y organizado.
+            </li>
+            <li><strong>Memoria en la Nube:</strong> Esta es la clave. Lo que un estudiante escribe hoy (consejos sobre
+                el casero, el precio del súper, qué discotecas evitar o qué barrios son mejores para vivir) <strong>se
+                    queda guardado para siempre</strong>. Es una "base de datos de experiencias" que nunca deja de
+                crecer. El alumno del año que viene no tendrá que preguntar lo mismo por décima vez; lo tendrá ahí
+                disponible.</li>
+            <li><strong>Interactividad total:</strong> Los usuarios pueden preguntar, responder y gestionar sus propios
+                posts. Puedes editar tus comentarios si te has equivocado o borrarlos si ya no son relevantes. Es un
+                sistema dinámico que empodera al alumno.</li>
         </ul>
 
-        <h3>4.3. Organización por Destinos de la ETSI</h3>
-        <p>Hemos configurado el foro para que esté ordenado de forma lógica. Hay hilos específicos para cada uno de los
-            <strong>101 destinos</strong> que ofrece nuestra escuela (la ETSI). </p>
+        <h3>Categorías de Interés</h3>
+        <p>El foro está pensado para cubrir los pilares esenciales del Erasmus que la universidad suele ignorar en sus
+            guías oficiales:</p>
+        <ol>
+            <li><strong>Convalidaciones:</strong> El tema que más estresa. Aquí los alumnos pueden decir: "Mira, la
+                asignatura X se convalida fácil por la asignatura Y de nuestro grado". Esto ahorra meses de correos con
+                los tutores.</li>
+            <li><strong>Alojamiento:</strong> Recomendaciones reales de residencias, páginas de alquiler fiables o
+                barrios donde los estudiantes suelen vivir.</li>
+            <li><strong>Vida Social y Ocio:</strong> Dónde está la fiesta, qué ver, cómo viajar barato por el país y
+                cómo moverse por la ciudad sin gastar una fortuna.</li>
+        </ol>
 
-        <h3>4.4. Los Pilares del Foro</h3>
-        <p>Nuestra visión es que en cada hilo los alumnos hablen de los temas que de verdad importan:</p>
-        <ul>
-            <li><strong>Alojamiento:</strong> Dónde buscar piso, qué barrios evitar y precios medios.</li>
-            <li><strong>Fiesta y Ocio:</strong> Los mejores sitios para salir y dónde comer barato sin morir en el
-                intento.</li>
-            <li><strong>Academia:</strong> Qué tal son los profesores allí y qué asignaturas son "pasables".</li>
-            <li><strong>Trámites locales:</strong> DNI, empadronamiento, tarjeta de transporte... todo lo aburrido pero
-                necesario.</li>
-        </ul>
-
-        <div id="ventanas" class="new-page"></div>
-
-        <h2>5. Recorrido por el Portal (Funcionalidades)</h2>
-        <p>Queremos detallarte cada rincón de la web para que veas que no hemos dejado nada al azar.</p>
-
-        <h3>5.1. El Dashboard Principal</h3>
-        <p>Es la puerta de entrada. Usamos una estructura de 3 columnas (en monitor grande) con tarjetas que centralizan
-            todo: Destinos, Convalidaciones, Foro, Plazos y Becas. Es limpio y directo.</p>
-
-        <h3>5.2. El Buscador de Plazas (Destinos)</h3>
-        <p>Hemos volcado todos los destinos del centro. Están divididos por tipos de beca para que el alumno no se líe:
-        </p>
-        <ul>
-            <li><strong>Erasmus+ (Europa):</strong> La clásica movilidad europea de Grado.</li>
-            <li><strong>No Erasmus:</strong> Destinos exóticos como Corea del Sur, Chile o Australia.</li>
-            <li><strong>Máster y Doctorado:</strong> Porque la movilidad no acaba en el Grado.</li>
-            <li><strong>Doble Grado:</strong> Los convenios más prestigiosos de la escuela.</li>
-        </ul>
-
-        <h3>5.3. El Hub de Convalidaciones</h3>
-        <p>Este es el "tesoro" de los estudiantes de ingeniería. Hemos rescatado los 101 documentos oficiales de la
-            escuela. </p>
-        <p><strong>Dato Importante:</strong> Al ser nosotros alumnos de la ETSI, es la información de la que
-            disponíamos. Por eso verás que el portal está actualmente muy enfocado a nuestra facultad. Pero ojo,
-            <strong>la estructura está lista para ser clonada para Derecho, Medicina, Comunicación...</strong> cualquier
-            facultad que nos pase sus PDFs de convalidaciones puede integrarse en cuestión de horas.</p>
-
-        <h3>5.4. Gestión de Tiempos y Dinero</h3>
-        <p>Sabemos que un problema del Erasmus es el dinero y las fechas. Hemos creado secciones con enlaces directos
-            para solicitar las becas del Banco Santander, el Plan Propio de la US y el Calendario de Plazos oficial. Si
-            pinchas, te lleva directo al formulario oficial. Sin rodeos innecesarios.</p>
-
-        <div id="futuro" class="new-page"></div>
-
-        <h2>6. El Plan de Futuro (Lo que queremos vender)</h2>
-        <p>Aquí es donde nos ponemos ambiciosos. Esto que presentamos hoy es la <strong>Versión 0</strong>, nuestro
-            prototipo estable. Pero tenemos un "Roadmap" (plan de ruta) para que esto sea el estándar de la universidad.
-        </p>
-
-        <h3>6.1. La Gran Escalada: Toda la Universidad de Sevilla</h3>
-        <p>Nuestra visión es que <strong>Erasmus Connect US</strong> no se quede solo en la ETSI. Queremos presentárselo
-            formalmente a la dirección general de movilidad de la Universidad. Podríamos:</p>
-        <ul>
-            <li>Crear una jerarquía por facultades en la página principal.</li>
-            <li>Centralizar los más de mil destinos de toda la US.</li>
-            <li>Unificar el foro para que alumnos de diferentes carreras que coincidan en la misma ciudad europea puedan
-                ayudarse entre sí.</li>
-        </ul>
-
-        <h3>6.2. Estrategia de Marketing y Lanzamiento</h3>
-        <p>Para que la web sea útil, tiene que usarla todo el mundo. Y para eso hace falta marketing:</p>
-        <ul>
-            <li><strong>Instagram Oficial:</strong> Queremos crear el perfil "ErasmusConnect_US" donde compartiremos lo
-                que se hable en los foros, dudas resueltas y fotos de los destinos para atraer al alumnado.</li>
-            <li><strong>Publicidad Física:</strong> Diseñar cartelería profesional con códigos QR destacados para
-                colocar en los pasillos de las facultades y en los tablones de anuncios.</li>
-            <li><strong>Identidad y Logo:</strong> Tenemos en mente crear un logo corporativo potente que los alumnos
-                sientan como algo institucional pero "guay".</li>
-        </ul>
-
-        <h3>6.3. Co-creación con la Institución</h3>
-        <p>Estamos totalmente abiertos a que la Universidad de Sevilla nos diga qué necesita. <strong>Nosotros ponemos
-                la tecnología y las ganas, y el rectorado pones las directrices</strong>. Podemos añadir botones,
-            cambiar colores o ajustar el sistema de mensajería para que se adapte al 100% a lo que la US busque.</p>
+        <p>Si este foro se usa masivamente, el valor para la universidad es incalculable. Se acabó el tener que
+            responder cien veces a la misma duda en secretaría; la respuesta estará en el foro.</p>
 
         <div id="tecnico" class="new-page"></div>
 
-        <h2>7. Especificaciones Técnicas (Bajo el capó)</h2>
-        <p>Para los más curiosos o para los que tengan que validar este proyecto técnicamente, aquí os dejamos el
-            detalle de cómo lo hemos montado.</p>
+        <h2>4. ESPECIFICACIONES TÉCNICAS (BAJO EL CAPÓ)</h2>
+        <p>Aunque por fuera la web se ve bonita, sencilla y moderna, por dentro hemos construido una estructura robusta
+            para que todo funcione como un reloj suizo.</p>
 
-        <h3>7.1. Cloud y Persistencia</h3>
-        <p>Como ya comentamos, el uso de <strong>Supabase</strong> es clave. Nos permite tener un backend profesional
-            sin necesidad de mantener servidores costosos. Al usar PostgreSQL, la integridad de los datos está
-            asegurada.</p>
+        <h3>Infraestructura de Datos</h3>
+        <p>Hemos huido de las soluciones baratas de almacenamiento local. He usado tecnología profesional de
+            <strong>Bases de Datos Relacionales (Supabase/PostgreSQL)</strong>. Esto permite que el foro funcione en
+            tiempo real. Cuando alguien escribe un mensaje en Múnich, le aparece al instante a alguien que esté
+            consultándolo desde Sevilla, sin tener que refrescar la página mil veces.</p>
 
-        <h3>7.2. Rendimiento (Vanilla JS)</h3>
-        <p>No hemos querido usar frameworks pesados (como React o Angular) para esta primera fase. Hemos apostado por
-            <strong>Vanilla JS</strong> optimizado. Esto hace que la web cargue casi instantáneamente, incluso si el
-            alumno tiene mala conexión a internet estando de viaje o en clase.</p>
+        <h3>Velocidad y Despliegue</h3>
+        <p>La web está alojada en <strong>GitHub Pages</strong>. Para la universidad, esto son todo ventajas: es 100%
+            seguro, gratuito de mantener y carga rapidísimo en cualquier parte del mundo gracias a los servidores de
+            alto rendimiento que hay detrás. No necesita configuraciones complejas de servidores locales.</p>
 
-        <h3>7.3. La clave: Omnicanalidad (Móvil)</h3>
-        <p>Sabemos que los estudiantes lo hacemos TODO desde el smartphone. Por eso, hemos programado la web con
-            tecnología <strong>Responsive Design</strong> de alta gama. No es que "se vea" en el móvil, es que está
-            pensada para ser cómoda de usar con una sola mano mientras vas en el bus o esperas en la cola de la
-            secretaría.</p>
+        <h3>Adaptabilidad (Responsive)</h3>
+        <p>Sé perfectamente que los estudiantes usamos el móvil para TODO. No vamos cargados con el portátil a todos
+            lados. Por eso, el formato se adapta al 100% a las pantallas de smartphone. He dedicado horas a que las
+            tablas de destinos, los menús y el foro se vean perfectos para que puedas consultar información crítica
+            mientras esperas el avión o en la puerta de tu nueva facultad.</p>
+
+        <div id="marketing" class="new-page"></div>
+
+        <h2>5. MARKETING Y VISIÓN DE FUTURO</h2>
+        <p>Una herramienta solo es útil si la gente la conoce y la usa. Mi propuesta va más allá del código; quiero
+            darle un impulso real de marketing para que <strong>Erasmus Connect US</strong> sea la marca de referencia
+            del estudiante internacional.</p>
+
+        <h3>Estrategia de Crecimiento</h3>
+        <ul>
+            <li><strong>Instagram ErasmusConnect:</strong> El primer paso es crear una comunidad en redes sociales donde
+                subamos tips rápidos de movilidad y redirijamos a la web. Es donde estamos los estudiantes y donde se
+                genera el interés inicial.</li>
+            <li><strong>Identidad Visual:</strong> Podemos diseñar un logo moderno y colocar cartelería profesional con
+                códigos QR por todos los pasillos de la ETSI y otras facultades de la US. Queremos que el alumno vea el
+                cartel y, en un segundo, esté dentro de la plataforma consultando su futuro.</li>
+            <li><strong>Escalabilidad Total:</strong> Ahora mismo el portal tiene todos los datos de la ETSI (mi
+                escuela), pero <strong>podemos incluir todos los destinos de todas las facultades de la Sevilla</strong>
+                si se nos facilita la información oficial. La estructura técnica ya existe; solo falta llenarla de
+                contenido para convertirnos en el hub central de la universidad.</li>
+        </ul>
+
+        <div class="highlight-box">
+            "Esta web es de creación propia y flexible. Puedo modificar cualquier apartado, color o función que la
+            universidad necesite para que se ajuste perfectamente a sus gustos y directrices institucionales."
+        </div>
 
         <div id="conclusion" class="new-page"></div>
 
-        <h2>8. Conclusión Final</h2>
-        <p><strong>Erasmus Connect US</strong> es mucho más que un trabajo de clase para nosotros. Es una apuesta por
-            mejorar de verdad la vida de nuestros compañeros.</p>
+        <h2>6. CONCLUSIÓN</h2>
+        <p>Erasmus Connect US es la evolución lógica de la movilidad internacional en la Universidad de Sevilla.
+            Queremos dejar atrás los PDFs antiguos, los laberintos de menús y los correos electrónicos que tardan días
+            en recibir respuesta. </p>
 
-        <p>Creemos que la Universidad de Sevilla tiene la oportunidad de liderar la digitalización de la movilidad con
-            un proyecto que ha nacido "desde abajo", de sus propios alumnos, conociendo los fallos reales y aportando
-            soluciones de última generación.</p>
+        <p>Pasamos a una plataforma donde el estudiante es el verdadero protagonista, donde la información es libre,
+            accesible y persistente. Es una herramienta lista para usarse <strong>ya mismo</strong> para los estudiantes
+            que se van el curso que viene.</p>
 
-        <p>Estamos listos para adaptarnos, para crecer y para que esta plataforma sea el orgullo de la ETSI y de toda la
-            US. <strong>¡Hagamos que el Erasmus de la US sea el mejor de toda España!</strong></p>
+        <p>Solo necesitamos el respaldo de la universidad para que esto pase de ser un proyecto personal de un
+            estudiante apasionado a ser la plataforma oficial que revolucione el Erasmus en Sevilla. Hagamos que viajar
+            y estudiar sea más fácil que nunca.</p>
 
-        <div class="url-box">
-            <strong>Puedes consultar el proyecto en tiempo real aquí:</strong><br>
-            <a href="https://Erasmus-Connect.github.io/erasmusconect/" class="web-link">Visitar Erasmus Connect US
-                🚀</a>
+        <div class="web-link-box">
+            <strong>Accede al proyecto en vivo desde aquí:</strong><br>
+            <a
+                href="https://erasmus-connect.github.io/erasmusconect/index.html">https://erasmus-connect.github.io/erasmusconect/</a>
         </div>
 
-        <footer>
-            <p>© 2024 erasmusconect - Memoria Técnica de Proyecto V3 (Edición de Lujo)</p>
-            <p>Diseñado con ❤️ por Alumnos de Ingeniería de la Universidad de Sevilla</p>
-        </footer>
+        <div class="footer">
+            <p>© 2024 Erasmus Connect US - Memoria Descriptiva Estudiantil</p>
+            <p>Diseñado para digitalizar la aventura de todo estudiante de la US.</p>
+        </div>
     </div>
 
 </body>
