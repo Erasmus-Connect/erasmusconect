@@ -17,12 +17,21 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--us-light);
     color: var(--us-dark);
     line-height: 1.6;
-    overflow-x: hidden;
-    /* Prevent horizontal scroll */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h1,
@@ -50,10 +59,16 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
-    /* Increased padding for better margins */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
 }
 
 /* Page titles and sections alignment helper */
@@ -191,16 +206,39 @@ nav a.active {
     margin-right: auto;
 }
 
-/* Search Bars */
-.search-wrapper {
-    max-width: 800px;
-    margin: 20px auto;
-}
-
-/* Mobile-only adjustments */
+/* Robust Universal Search Bar Stacking */
 @media (max-width: 768px) {
-    header .container {
-        padding: 0 15px;
+
+    .search-container,
+    .search-strip,
+    .forum-search-box,
+    .search-wrapper {
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 15px !important;
+        padding: 10px !important;
+        gap: 10px !important;
+    }
+
+    .search-container input,
+    .search-strip input,
+    .forum-search-box input {
+        width: 100% !important;
+        border-radius: 10px !important;
+        text-align: center !important;
+        padding: 15px !important;
+        margin: 0 !important;
+    }
+
+    .search-container button,
+    .search-strip button,
+    .forum-search-box button {
+        width: 100% !important;
+        border-radius: 10px !important;
+        padding: 15px !important;
+        justify-content: center !important;
+        margin: 0 !important;
     }
 }
 
@@ -244,7 +282,7 @@ nav a.active {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 30px;
 }
 
