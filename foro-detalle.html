@@ -7,6 +7,8 @@
     <title>Foro Detalle - erasmusconect</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         .forum-detail-header {
             background: #f8f8f8;
@@ -535,48 +537,158 @@
     <!-- Load Data -->
     <script src="foro-data.js"></script>
     <script>
-        // Global Error Catcher for easier debugging (Simulated)
+        // Supabase Configuration
+        const SUPABASE_URL = 'https://wuzgjmitewaoamprrect.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_KSKBKEdM_4k4zpIRUhfRlA_0rgQ7Vzn';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Global Error Catcher
         window.onerror = function (msg, url, line) {
             console.error('FORUM ERROR:', msg, 'at', line);
             return false;
         };
 
         // Initialize data and UI
-        function initForum() {
+        async function initForum() {
             const urlParams = new URLSearchParams(window.location.search);
             const u = urlParams.get('u');
             let id = urlParams.get('id');
+
+            if (!id) return;
+
+            // Update titles
+            const forumTitle = (u ? 'Foro: ' + u : 'Foro de Destino');
+            document.getElementById('forumTitle').innerText = forumTitle;
+            if (document.getElementById('forumTitleHero')) {
+                document.getElementById('forumTitleHero').innerText = forumTitle;
+            }
+            document.title = forumTitle + ' - erasmusconect';
+
+            window.currentForumId = id;
+            await loadMessages();
+        }
+
+        async function loadMessages() {
             const grid = document.getElementById('messagesGrid');
+            grid.innerHTML = '<div style="text-align:center; padding: 40px; color: #888;"><i class="fas fa-spinner fa-spin"></i> Cargando mensajes desde la nube...</div>';
 
-            if (typeof window.forumData === 'undefined') {
-                console.error('ERROR: foro-data.js not loaded');
-                return;
+            try {
+                // 1. Fetch messages for this forum
+                const { data: messages, error } = await supabaseClient
+                    .from('forum_messages')
+                    .select('*')
+                    .eq('forum_id', window.currentForumId)
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                // 2. Fetch all replies for these messages
+                const messageIds = messages.map(m => m.id);
+                let allReplies = [];
+                if (messageIds.length > 0) {
+                    const { data: replies, error: rError } = await supabaseClient
+                        .from('forum_replies')
+                        .select('*')
+                        .in('message_id', messageIds);
+                    if (rError) throw rError;
+                    allReplies = replies;
+                }
+
+                // 3. Render
+                if (messages.length === 0) {
+                    loadStaticDataFallback();
+                    return;
+                }
+
+                grid.innerHTML = '';
+                messages.forEach(msg => {
+                    const msgReplies = allReplies.filter(r => r.message_id === msg.id);
+                    renderSingleCard(msg, msgReplies);
+                });
+
+            } catch (err) {
+                console.error('Error loading cloud data:', err);
+                loadStaticDataFallback();
             }
+        }
 
-            let currentForum = window.forumData[id];
-            if (!currentForum && id) {
+        function loadStaticDataFallback() {
+            const id = window.currentForumId;
+            let staticForum = window.forumData ? window.forumData[id] : null;
+
+            if (!staticForum && id) {
                 const normalizedId = id.replace(/ /g, '+');
-                currentForum = window.forumData[normalizedId];
+                staticForum = window.forumData ? window.forumData[normalizedId] : null;
             }
 
-            if (!currentForum) {
-                currentForum = typeof getDefaultMessages === 'function' ? getDefaultMessages(u || 'Destino') : {
-                    title: 'Foro: ' + (u || 'Destino'),
-                    messages: [{ user: 'Admin', avatar: 'A', date: 'Hoy', body: 'Bienvenido.', replies: [] }]
+            if (!staticForum) {
+                staticForum = {
+                    messages: [{ user: 'AdminUS', avatar: 'A', date: 'Hoy', body: 'Bienvenido al foro. Sé el primero en publicar una duda real.', replies: [] }]
                 };
             }
 
-            window.currentForum = currentForum;
-            document.getElementById('forumTitle').innerText = currentForum.title;
-            if (document.getElementById('forumTitleHero')) {
-                document.getElementById('forumTitleHero').innerText = currentForum.title;
-            }
-            document.title = currentForum.title + ' - erasmusconect';
-
-            renderMessages();
+            const grid = document.getElementById('messagesGrid');
+            grid.innerHTML = '';
+            staticForum.messages.forEach(msg => {
+                const mappedMsg = {
+                    id: 'static-' + Math.random(),
+                    author_name: msg.user,
+                    avatar: msg.avatar,
+                    date_str: msg.date,
+                    body: msg.body,
+                    badge: msg.badge,
+                    badge_class: msg.badgeClass
+                };
+                renderSingleCard(mappedMsg, msg.replies.map(r => ({ author_name: r.user, reply_text: r.text })));
+            });
         }
 
-        // Expose functions to window scope for reliable onclick access
+        function renderSingleCard(msg, replies) {
+            const grid = document.getElementById('messagesGrid');
+            const card = document.createElement('div');
+            card.className = 'message-card' + (msg.badge === 'RESPUESTA' || msg.badge === 'CONSEJO' ? ' is-answer' : '');
+            card.setAttribute('data-content', ((msg.body || '') + ' ' + (msg.author_name || '')).toLowerCase());
+
+            const hasReplies = replies && replies.length > 0;
+            const dateStr = msg.created_at ? new Date(msg.created_at).toLocaleDateString() : (msg.date_str || 'Reciente');
+
+            let repliesHtml = `
+                <div class="replies-container">
+                    ${hasReplies ? `<div class="replies-title"><i class="fas fa-comment-dots"></i> Respuestas en este hilo</div>` : ''}
+                    ${hasReplies ? replies.map(r => `
+                        <div class="reply-item">
+                            <span class="reply-user">${r.author_name}</span>
+                            ${r.reply_text}
+                        </div>
+                    `).join('') : ''}
+                    <button class="btn-reply-trigger" onclick="toggleReplyBox(this)">
+                        <i class="fas fa-reply"></i> ${hasReplies ? 'Responder a este hilo' : 'Sé el primero en responder'}
+                    </button>
+                    <div class="inline-reply-box">
+                        <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
+                        <div class="btn-group">
+                            <button class="btn-cancel-mini" onclick="toggleReplyBox(this, false)">Cancelar</button>
+                            <button class="btn-send-mini" onclick="postReply(this, ${msg.id})">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            card.innerHTML = `
+                <div class="msg-header">
+                    <div class="msg-avatar">${(msg.avatar || msg.author_name || '?').charAt(0).toUpperCase()}</div>
+                    <div class="msg-info">
+                        <span class="msg-user">${msg.author_name || 'Estudiante'}</span>
+                        <span class="msg-date">${dateStr}</span>
+                        <br><span class="msg-badge ${msg.badge_class || ''}">${msg.badge || ''}</span>
+                    </div>
+                </div>
+                <div class="msg-body">${msg.body || ''}</div>
+                ${repliesHtml}
+            `;
+            grid.appendChild(card);
+        }
+
         window.toggleReplyBox = function (btn, show = true) {
             const card = btn.closest('.message-card');
             const box = card.querySelector('.inline-reply-box');
@@ -591,57 +703,6 @@
             }
         };
 
-        window.renderMessages = function () {
-            const grid = document.getElementById('messagesGrid');
-            const forum = window.currentForum;
-            grid.innerHTML = '';
-
-            forum.messages.forEach((msg, index) => {
-                const card = document.createElement('div');
-                card.className = 'message-card' + (msg.badge === 'RESPUESTA' || msg.badge === 'CONSEJO' ? ' is-answer' : '');
-                card.setAttribute('data-content', ((msg.body || '') + ' ' + (msg.user || '')).toLowerCase());
-
-                let repliesHtml = '';
-                const hasReplies = msg.replies && msg.replies.length > 0;
-
-                repliesHtml = `
-                    <div class="replies-container">
-                        ${hasReplies ? `<div class="replies-title"><i class="fas fa-comment-dots"></i> Respuestas en este hilo</div>` : ''}
-                        ${hasReplies ? msg.replies.map(r => `
-                            <div class="reply-item">
-                                <span class="reply-user">${r.user}</span>
-                                ${r.text}
-                            </div>
-                        `).join('') : ''}
-                        <button class="btn-reply-trigger" onclick="toggleReplyBox(this)">
-                            <i class="fas fa-reply"></i> ${hasReplies ? 'Responder a este hilo' : 'Sé el primero en responder'}
-                        </button>
-                        <div class="inline-reply-box">
-                            <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
-                            <div class="btn-group">
-                                <button class="btn-cancel-mini" onclick="toggleReplyBox(this, false)">Cancelar</button>
-                                <button class="btn-send-mini" onclick="postReply(this)">Enviar</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                card.innerHTML = `
-                <div class="msg-header">
-                    <div class="msg-avatar">${msg.avatar || '?'}</div>
-                    <div class="msg-info">
-                        <span class="msg-user">${msg.user || 'Usuario'}</span>
-                        <span class="msg-date">${msg.date || 'Reciente'}</span>
-                        <br><span class="msg-badge ${msg.badgeClass || ''}">${msg.badge || ''}</span>
-                    </div>
-                </div>
-                <div class="msg-body">${msg.body || ''}</div>
-                ${repliesHtml}
-            `;
-                grid.appendChild(card);
-            });
-        };
-
         window.openNewQuestionModal = function () {
             document.getElementById('newQuestionModal').style.display = 'flex';
             document.getElementById('newQuestionName').focus();
@@ -651,7 +712,7 @@
             document.getElementById('newQuestionModal').style.display = 'none';
         };
 
-        window.submitNewQuestion = function () {
+        window.submitNewQuestion = async function () {
             const nameInput = document.getElementById('newQuestionName');
             const bodyInput = document.getElementById('newQuestionBody');
             const btn = document.getElementById('btnSubmitQuestion');
@@ -664,84 +725,79 @@
                 return;
             }
 
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publicando...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publicando en la nube...';
             btn.disabled = true;
 
-            setTimeout(() => {
-                const newMessage = {
-                    user: name,
-                    avatar: name.charAt(0).toUpperCase(),
-                    date: 'Hoy (Hace unos segundos)',
-                    badge: 'PREGUNTA NUEVA',
-                    badgeClass: 'badge-pregunta',
-                    body: body,
-                    replies: []
-                };
+            try {
+                const { error } = await supabaseClient
+                    .from('forum_messages')
+                    .insert([
+                        {
+                            forum_id: window.currentForumId,
+                            author_name: name,
+                            body: body,
+                            badge: 'PREGUNTA NUEVA',
+                            badge_class: 'badge-pregunta'
+                        }
+                    ]);
 
-                window.currentForum.messages.unshift(newMessage);
-                window.renderMessages();
+                if (error) throw error;
 
                 nameInput.value = '';
                 bodyInput.value = '';
+                window.closeNewQuestionModal();
+                await loadMessages();
+                window.scrollTo({ top: 300, behavior: 'smooth' });
+            } catch (err) {
+                alert('Error al publicar: ' + err.message);
+            } finally {
                 btn.innerHTML = 'Publicar Pregunta';
                 btn.disabled = false;
-                window.closeNewQuestionModal();
-                window.scrollTo({ top: 300, behavior: 'smooth' });
-            }, 1000);
+            }
         };
 
-        window.postReply = function (btn) {
+        window.postReply = async function (btn, messageId) {
             const card = btn.closest('.message-card');
             const textarea = card.querySelector('textarea');
             const text = textarea.value.trim();
 
             if (!text) return;
+            if (String(messageId).includes('static')) {
+                alert('Este es un mensaje de ejemplo estático. Publica una "Nueva Consulta" para habilitar hilos en la nube.');
+                return;
+            }
 
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
             btn.disabled = true;
 
-            setTimeout(() => {
-                const repliesContainer = card.querySelector('.replies-container');
-                let title = card.querySelector('.replies-title');
+            try {
+                const { error } = await supabaseClient
+                    .from('forum_replies')
+                    .insert([
+                        { message_id: messageId, author_name: 'Invitado (US)', reply_text: text }
+                    ]);
 
-                if (!title) {
-                    title = document.createElement('div');
-                    title.className = 'replies-title';
-                    title.innerHTML = '<i class="fas fa-comment-dots"></i> Respuestas en este hilo';
-                    repliesContainer.insertBefore(title, repliesContainer.firstChild);
-                }
-
-                const newReply = document.createElement('div');
-                newReply.className = 'reply-item';
-                newReply.style.animation = 'fadeIn 0.5s ease forwards';
-                newReply.innerHTML = `<span class="reply-user">Tú (Invitado)</span> ${text}`;
-
-                const trigger = card.querySelector('.btn-reply-trigger');
-                repliesContainer.insertBefore(newReply, trigger);
+                if (error) throw error;
 
                 textarea.value = '';
                 window.toggleReplyBox(btn, false);
+                await loadMessages();
+            } catch (err) {
+                alert('Error al responder: ' + err.message);
+            } finally {
                 btn.innerHTML = 'Enviar';
                 btn.disabled = false;
-            }, 800);
+            }
         };
 
         // Keyword search
         document.getElementById('keywordSearch').addEventListener('input', function () {
             const filter = this.value.toLowerCase().trim();
             const cards = document.getElementsByClassName('message-card');
-            let foundCount = 0;
-
             for (let card of cards) {
                 const content = card.getAttribute('data-content');
-                if (content.includes(filter)) {
-                    card.style.display = 'flex';
-                    foundCount++;
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = content.includes(filter) ? 'flex' : 'none';
             }
-            document.getElementById('noMessages').style.display = foundCount === 0 ? 'block' : 'none';
         });
 
         // Start initialization
