@@ -415,30 +415,31 @@ footer {
 .destinos-grid {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 40px;
+    /* More gap */
     margin-bottom: 50px;
-    padding-top: 60px;
-    /* Increased margin as requested */
+    padding-top: 100px;
+    /* Much larger margin from header */
     flex-wrap: wrap;
     width: 100%;
 }
 
 .category-card {
     background: var(--white);
-    padding: 50px 30px;
-    /* Larger vertical padding */
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 70px 45px;
+    /* Even larger */
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     text-align: center;
     cursor: pointer;
     transition: var(--transition);
-    border: 2px solid var(--us-red);
-    /* Red contour */
-    border-top: 6px solid var(--us-red);
-    /* Thicker top border like convalidaciones */
-    flex: 0 1 calc(33.333% - 20px);
-    min-width: 320px;
-    /* Slightly wider */
+    border: 3px solid var(--us-red);
+    /* Prominent red contour */
+    border-top: 10px solid var(--us-red);
+    /* Extra thick top like convalidaciones but bigger */
+    flex: 0 1 calc(33.333% - 30px);
+    min-width: 360px;
+    /* Wider cards */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -448,17 +449,17 @@ footer {
 }
 
 .category-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 20px 40px rgba(164, 16, 52, 0.15);
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(164, 16, 52, 0.2);
     border-color: var(--us-gold);
     border-top-color: var(--us-gold);
 }
 
 .category-card i {
     color: var(--us-red) !important;
-    margin-bottom: 25px;
-    font-size: 3.5rem;
-    /* Large icons like fa-4x */
+    margin-bottom: 30px;
+    font-size: 4.5rem;
+    /* Even larger icons */
 }
 
 .category-card h3 {
