@@ -417,48 +417,62 @@ footer {
     justify-content: center;
     gap: 30px;
     margin-bottom: 50px;
-    padding-top: 40px;
+    padding-top: 60px;
+    /* Increased margin as requested */
     flex-wrap: wrap;
     width: 100%;
 }
 
 .category-card {
     background: var(--white);
-    padding: 40px 30px;
+    padding: 50px 30px;
+    /* Larger vertical padding */
     border-radius: 12px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
     cursor: pointer;
     transition: var(--transition);
     border: 2px solid var(--us-red);
+    /* Red contour */
     border-top: 6px solid var(--us-red);
+    /* Thicker top border like convalidaciones */
     flex: 0 1 calc(33.333% - 20px);
-    min-width: 280px;
+    min-width: 320px;
+    /* Slightly wider */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     color: inherit;
 }
 
 .category-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(164, 10, 52, 0.15);
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(164, 16, 52, 0.15);
     border-color: var(--us-gold);
     border-top-color: var(--us-gold);
 }
 
+.category-card i {
+    color: var(--us-red) !important;
+    margin-bottom: 25px;
+    font-size: 3.5rem;
+    /* Large icons like fa-4x */
+}
+
 .category-card h3 {
     color: var(--us-red);
-    margin-top: 15px;
-    font-size: 1.4rem;
-    margin-bottom: 10px;
+    margin: 0 0 15px 0;
+    font-size: 1.6rem;
+    font-weight: 700;
 }
 
 .category-card p {
     color: #666;
-    font-size: 0.95rem;
-    line-height: 1.4;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
 }
 
 @media (max-width: 992px) {

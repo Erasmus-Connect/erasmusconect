@@ -8,70 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .convalidaciones-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 40px 0;
-            width: 100%;
-        }
-
-        .conval-card {
-            background: var(--white);
-            border-top: 5px solid var(--us-red);
-            padding: 40px 30px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: var(--transition);
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .conval-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border-top-color: var(--us-gold);
-        }
-
-        .conval-card i {
-            color: var(--us-red);
-            margin-bottom: 20px;
-        }
-
-        .conval-card h3 {
-            margin: 0 0 15px 0;
-            color: var(--us-red);
-            font-size: 1.5rem;
-        }
-
-        .conval-card p {
-            color: #666;
-            font-size: 1rem;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        .btn-download {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #f8f8f8;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-weight: bold;
-            color: #555;
-            transition: var(--transition);
-        }
-
-        .conval-card:hover .btn-download {
-            background: var(--us-gold);
-            color: white;
-            border-color: var(--us-gold);
-        }
+        /* Local overrides removed in favor of global styles.css */
     </style>
 </head>
 
@@ -98,46 +35,56 @@
     <div class="container">
 
 
-        <div class="convalidaciones-grid">
+        <div class="destinos-grid">
             <!-- Convalidaciones anteriores -->
-            <a href="convalidaciones-anteriores.html" class="conval-card">
-                <i class="fas fa-history fa-4x"></i>
+            <a href="convalidaciones-anteriores.html" class="category-card">
+                <i class="fas fa-history"></i>
                 <h3>Convalidaciones anteriores (Solo ETSI)</h3>
                 <p>Repositorio histórico de asignaturas convalidadas por otros alumnos (Actualmente solo disponible para
                     alumnos de la ETSI).</p>
-                <div class="btn-download">Ver Historial</div>
+                <div class="btn-download"
+                    style="margin-top: 20px; padding: 10px 20px; background: #f8f8f8; border: 1px solid #ddd; border-radius: 4px; font-weight: bold; color: #555;">
+                    Ver Historial</div>
             </a>
 
             <!-- Modificación Acuerdo -->
-            <a href="modificacion-acuerdo.html" class="conval-card">
-                <i class="fas fa-file-signature fa-4x"></i>
+            <a href="modificacion-acuerdo.html" class="category-card">
+                <i class="fas fa-file-signature"></i>
                 <h3>Modificación Acuerdo de Estudios</h3>
                 <p>Pasos y plazos para realizar cambios en tu acuerdo de estudios una vez en el destino.</p>
-                <div class="btn-download">Ver Guía</div>
+                <div class="btn-download"
+                    style="margin-top: 20px; padding: 10px 20px; background: #f8f8f8; border: 1px solid #ddd; border-radius: 4px; font-weight: bold; color: #555;">
+                    Ver Guía</div>
             </a>
 
             <!-- Manual OLA -->
-            <a href="MANUAL OLA.pdf" target="_blank" class="conval-card">
-                <i class="fas fa-book fa-4x"></i>
+            <a href="MANUAL OLA.pdf" target="_blank" class="category-card">
+                <i class="fas fa-book"></i>
                 <h3>Manual OLA</h3>
                 <p>Guía completa para el uso de la plataforma Online Learning Agreement (OLA).</p>
-                <div class="btn-download"><i class="fas fa-file-pdf"></i> Descargar PDF</div>
+                <div class="btn-download"
+                    style="margin-top: 20px; padding: 10px 20px; background: #f8f8f8; border: 1px solid #ddd; border-radius: 4px; font-weight: bold; color: #555;">
+                    <i class="fas fa-file-pdf"></i> Descargar PDF</div>
             </a>
 
             <!-- Programa Tutores -->
-            <a href="PROGRAMA TUTORES MOVILIDAD 2025-26.pdf" target="_blank" class="conval-card">
-                <i class="fas fa-user-graduate fa-4x"></i>
+            <a href="PROGRAMA TUTORES MOVILIDAD 2025-26.pdf" target="_blank" class="category-card">
+                <i class="fas fa-user-graduate"></i>
                 <h3>Programa Tutores Movilidad</h3>
                 <p>Información sobre el programa de tutores para ayudarte durante tu estancia.</p>
-                <div class="btn-download"><i class="fas fa-file-pdf"></i> Descargar PDF</div>
+                <div class="btn-download"
+                    style="margin-top: 20px; padding: 10px 20px; background: #f8f8f8; border: 1px solid #ddd; border-radius: 4px; font-weight: bold; color: #555;">
+                    <i class="fas fa-file-pdf"></i> Descargar PDF</div>
             </a>
 
             <!-- Créditos Optativos -->
-            <a href="creditos-optativos.html" class="conval-card">
-                <i class="fas fa-graduation-cap fa-4x"></i>
+            <a href="creditos-optativos.html" class="category-card">
+                <i class="fas fa-graduation-cap"></i>
                 <h3>Créditos Optativos</h3>
                 <p>Información sobre el reconocimiento de créditos optativos por actividades de movilidad.</p>
-                <div class="btn-download">Ver Información</div>
+                <div class="btn-download"
+                    style="margin-top: 20px; padding: 10px 20px; background: #f8f8f8; border: 1px solid #ddd; border-radius: 4px; font-weight: bold; color: #555;">
+                    Ver Información</div>
             </a>
         </div>
     </div>
