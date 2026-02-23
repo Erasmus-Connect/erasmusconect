@@ -176,6 +176,39 @@
             display: inline-block;
         }
 
+        /* Ownership buttons */
+        .msg-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 10px;
+        }
+
+        .btn-action {
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 8px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .btn-action:hover {
+            background: #f5f5f5;
+            color: var(--us-red);
+        }
+
+        .btn-delete:hover {
+            color: #d9534f;
+            background: #fff5f5;
+        }
+
         .badge-pregunta {
             background: #fff3cd;
             color: #856404;
@@ -573,6 +606,9 @@
             grid.innerHTML = '<div style="text-align:center; padding: 40px; color: #888;"><i class="fas fa-spinner fa-spin"></i> Cargando mensajes desde la nube...</div>';
 
             try {
+                // Get my messages from localStorage
+                window.myMessageIds = JSON.parse(localStorage.getItem('my_messages') || '[]');
+
                 // 1. Fetch messages for this forum
                 const { data: messages, error } = await supabaseClient
                     .from('forum_messages')
@@ -652,6 +688,15 @@
             const hasReplies = replies && replies.length > 0;
             const dateStr = msg.created_at ? new Date(msg.created_at).toLocaleDateString() : (msg.date_str || 'Reciente');
 
+            // Ownership check
+            const isMine = window.myMessageIds && window.myMessageIds.includes(msg.id);
+            const actionsHtml = isMine ? `
+                <div class="msg-actions">
+                    <button class="btn-action" onclick="editMessage(${msg.id})"><i class="fas fa-pencil-alt"></i> Editar</button>
+                    <button class="btn-action btn-delete" onclick="deleteMessage(${msg.id})"><i class="fas fa-trash"></i> Borrar</button>
+                </div>
+            ` : '';
+
             let repliesHtml = `
                 <div class="replies-container">
                     ${hasReplies ? `<div class="replies-title"><i class="fas fa-comment-dots"></i> Respuestas en este hilo</div>` : ''}
@@ -684,6 +729,7 @@
                     </div>
                 </div>
                 <div class="msg-body">${msg.body || ''}</div>
+                ${actionsHtml}
                 ${repliesHtml}
             `;
             grid.appendChild(card);
@@ -729,7 +775,7 @@
             btn.disabled = true;
 
             try {
-                const { error } = await supabaseClient
+                const { data, error } = await supabaseClient
                     .from('forum_messages')
                     .insert([
                         {
@@ -739,9 +785,17 @@
                             badge: 'PREGUNTA NUEVA',
                             badge_class: 'badge-pregunta'
                         }
-                    ]);
+                    ])
+                    .select();
 
                 if (error) throw error;
+
+                // Save ownership link
+                if (data && data.length > 0) {
+                    const myMsgs = JSON.parse(localStorage.getItem('my_messages') || '[]');
+                    myMsgs.push(data[0].id);
+                    localStorage.setItem('my_messages', JSON.stringify(myMsgs));
+                }
 
                 nameInput.value = '';
                 bodyInput.value = '';
@@ -753,6 +807,54 @@
             } finally {
                 btn.innerHTML = 'Publicar Pregunta';
                 btn.disabled = false;
+            }
+        };
+
+        window.deleteMessage = async function (id) {
+            if (!confirm('¿Estás seguro de que quieres borrar tu mensaje? Esta acción no se puede deshacer.')) return;
+
+            try {
+                const { error } = await supabaseClient
+                    .from('forum_messages')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                // Clean from local tracking
+                const myMsgs = JSON.parse(localStorage.getItem('my_messages') || '[]');
+                const filtered = myMsgs.filter(m => m !== id);
+                localStorage.setItem('my_messages', JSON.stringify(filtered));
+
+                await loadMessages();
+            } catch (err) {
+                alert('Error al borrar: ' + err.message);
+            }
+        };
+
+        window.editMessage = async function (id) {
+            // Find existing text
+            const { data: existing, error: eError } = await supabaseClient
+                .from('forum_messages')
+                .select('body')
+                .eq('id', id)
+                .single();
+
+            if (eError) return;
+
+            const newContent = prompt('Edita tu mensaje:', existing.body);
+            if (newContent === null || newContent.trim() === '' || newContent === existing.body) return;
+
+            try {
+                const { error } = await supabaseClient
+                    .from('forum_messages')
+                    .update({ body: newContent.trim() })
+                    .eq('id', id);
+
+                if (error) throw error;
+                await loadMessages();
+            } catch (err) {
+                alert('Error al editar: ' + err.message);
             }
         };
 
