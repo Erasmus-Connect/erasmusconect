@@ -69,9 +69,22 @@
         /* Message squares (cards) */
         .messages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
+            /* Force 3 columns on desktop */
             gap: 30px;
             margin-bottom: 40px;
+        }
+
+        @media (max-width: 1100px) {
+            .messages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .messages-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .message-card {
@@ -347,83 +360,88 @@
     </div>
 
     <div class="forum-search-section">
-        <div class="container">
-            <div class="forum-search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="keywordSearch" placeholder="Busca en este hilo (ej: residencia, wifi)...">
+        <div class="forum-search-section">
+            <div class="container mobile-flex-stack">
+                <div class="forum-search-box order-first">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="keywordSearch" placeholder="Busca en este hilo (ej: residencia, wifi)...">
+                </div>
+                <div class="hero-text-content">
+                    <h1 id="forumTitle" style="margin: 20px 0 10px 0; color: var(--us-red);">Cargando Foro...</h1>
+                    <p style="color: #666; margin-bottom: 0;">Resuelve tus dudas y ayuda a otros alumnos.</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container-custom" style="padding-top: 20px;">
-        <div style="text-align: right;">
-            <a href="#" class="new-thread-btn" onclick="alert('Abriendo editor de nueva consulta...')"><i
-                    class="fas fa-plus"></i> Nueva Pregunta</a>
+        <div class="container-custom" style="padding-top: 20px;">
+            <div style="text-align: right;">
+                <a href="#" class="new-thread-btn" onclick="alert('Abriendo editor de nueva consulta...')"><i
+                        class="fas fa-plus"></i> Nueva Pregunta</a>
+            </div>
+
+            <div class="messages-grid" id="messagesGrid">
+                <!-- Messages will be injected by JS -->
+            </div>
+
+            <div id="noMessages" class="no-results">
+                <i class="fas fa-search fa-3x" style="margin-bottom: 20px; color: #ccc;"></i>
+                <p>No se han encontrado mensajes que contengan esa palabra clave.</p>
+            </div>
         </div>
 
-        <div class="messages-grid" id="messagesGrid">
-            <!-- Messages will be injected by JS -->
-        </div>
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 erasmusconect - Proyecto Estudiantes Universidad de Sevilla</p>
+            </div>
+        </footer>
 
-        <div id="noMessages" class="no-results">
-            <i class="fas fa-search fa-3x" style="margin-bottom: 20px; color: #ccc;"></i>
-            <p>No se han encontrado mensajes que contengan esa palabra clave.</p>
-        </div>
-    </div>
+        <!-- Load Data -->
+        <script src="foro-data.js"></script>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const u = urlParams.get('u'); // Nombre para mostrar
+            let id = urlParams.get('id'); // ID para buscar datos
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 erasmusconect - Proyecto Estudiantes Universidad de Sevilla</p>
-        </div>
-    </footer>
+            const grid = document.getElementById('messagesGrid');
 
-    <!-- Load Data -->
-    <script src="foro-data.js"></script>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const u = urlParams.get('u'); // Nombre para mostrar
-        let id = urlParams.get('id'); // ID para buscar datos
-
-        const grid = document.getElementById('messagesGrid');
-
-        // Robust check for data
-        if (typeof window.forumData === 'undefined') {
-            console.error('ERROR: foro-data.js no se ha cargado correctamente.');
-            grid.innerHTML = '<div class="no-results" style="display:block;">Error cargando base de datos. Por favor, recarga la página.</div>';
-        }
-
-        let currentForum = null;
-        if (id && window.forumData) {
-            currentForum = window.forumData[id];
-            // Normalizar ID: Si viene con espacios (porque el + se decodificó), volver a poner el +
-            if (!currentForum) {
-                const normalizedId = id.replace(/ /g, '+');
-                currentForum = window.forumData[normalizedId];
+            // Robust check for data
+            if (typeof window.forumData === 'undefined') {
+                console.error('ERROR: foro-data.js no se ha cargado correctamente.');
+                grid.innerHTML = '<div class="no-results" style="display:block;">Error cargando base de datos. Por favor, recarga la página.</div>';
             }
-        }
 
-        if (!currentForum) {
-            console.warn('ID no encontrado, cargando mensajes por defecto para:', u);
-            currentForum = typeof getDefaultMessages === 'function' ? getDefaultMessages(u || 'Destino Desconocido') : {
-                title: 'Foro: ' + (u || 'Destino'),
-                messages: [{ user: 'Admin', avatar: 'A', date: 'Hoy', body: 'Bienvenido al foro.', replies: [] }]
-            };
-        }
+            let currentForum = null;
+            if (id && window.forumData) {
+                currentForum = window.forumData[id];
+                // Normalizar ID: Si viene con espacios (porque el + se decodificó), volver a poner el +
+                if (!currentForum) {
+                    const normalizedId = id.replace(/ /g, '+');
+                    currentForum = window.forumData[normalizedId];
+                }
+            }
 
-        document.getElementById('forumTitle').innerText = currentForum.title;
-        document.title = currentForum.title + ' - erasmusconect';
+            if (!currentForum) {
+                console.warn('ID no encontrado, cargando mensajes por defecto para:', u);
+                currentForum = typeof getDefaultMessages === 'function' ? getDefaultMessages(u || 'Destino Desconocido') : {
+                    title: 'Foro: ' + (u || 'Destino'),
+                    messages: [{ user: 'Admin', avatar: 'A', date: 'Hoy', body: 'Bienvenido al foro.', replies: [] }]
+                };
+            }
 
-        // Render messages
-        function renderMessages() {
-            grid.innerHTML = '';
-            currentForum.messages.forEach((msg, index) => {
-                const card = document.createElement('div');
-                card.className = 'message-card' + (msg.badge === 'RESPUESTA' || msg.badge === 'CONSEJO' ? ' is-answer' : '');
-                card.setAttribute('data-content', msg.body.toLowerCase() + ' ' + msg.user.toLowerCase());
+            document.getElementById('forumTitle').innerText = currentForum.title;
+            document.title = currentForum.title + ' - erasmusconect';
 
-                let repliesHtml = '';
-                if (msg.replies && msg.replies.length > 0) {
-                    repliesHtml = `
+            // Render messages
+            function renderMessages() {
+                grid.innerHTML = '';
+                currentForum.messages.forEach((msg, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'message-card' + (msg.badge === 'RESPUESTA' || msg.badge === 'CONSEJO' ? ' is-answer' : '');
+                    card.setAttribute('data-content', msg.body.toLowerCase() + ' ' + msg.user.toLowerCase());
+
+                    let repliesHtml = '';
+                    if (msg.replies && msg.replies.length > 0) {
+                        repliesHtml = `
                         <div class="replies-container">
                             <div class="replies-title"><i class="fas fa-comment-dots"></i> Respuestas en este hilo</div>
                             ${msg.replies.map(r => `
@@ -437,27 +455,27 @@
                                 <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
                                 <div class="btn-group">
                                     <button class="btn-cancel-mini" onclick="toggleReplyBox(this, false)">Cancelar</button>
-                                    <button class="btn-send-mini" onclick="alert('Respuesta enviada al hilo.')">Enviar</button>
+                                    <button class="btn-send-mini" onclick="postReply(this)">Enviar</button>
                                 </div>
                             </div>
                         </div>
                     `;
-                } else {
-                    repliesHtml = `
+                    } else {
+                        repliesHtml = `
                         <div class="replies-container">
                             <button class="btn-reply-trigger" onclick="toggleReplyBox(this)"><i class="fas fa-reply"></i> Sé el primero en responder</button>
                             <div class="inline-reply-box">
                                 <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
                                 <div class="btn-group">
                                     <button class="btn-cancel-mini" onclick="toggleReplyBox(this, false)">Cancelar</button>
-                                    <button class="btn-send-mini" onclick="alert('Respuesta enviada al hilo.')">Enviar</button>
+                                    <button class="btn-send-mini" onclick="postReply(this)">Enviar</button>
                                 </div>
                             </div>
                         </div>
                     `;
-                }
+                    }
 
-                card.innerHTML = `
+                    card.innerHTML = `
                     <div class="msg-header">
                         <div class="msg-avatar">${msg.avatar}</div>
                         <div class="msg-info">
@@ -469,50 +487,88 @@
                     <div class="msg-body">${msg.body}</div>
                     ${repliesHtml}
                 `;
-                grid.appendChild(card);
-            });
-        }
+                    grid.appendChild(card);
+                });
+            }
 
-        renderMessages();
+            renderMessages();
 
-        // Buscador de palabras clave
-        const searchInput = document.getElementById('keywordSearch');
-        const noResults = document.getElementById('noMessages');
+            // Buscador de palabras clave
+            const searchInput = document.getElementById('keywordSearch');
+            const noResults = document.getElementById('noMessages');
 
-        searchInput.addEventListener('input', function () {
-            const filter = searchInput.value.toLowerCase().trim();
-            const cards = document.getElementsByClassName('message-card');
-            let foundCount = 0;
+            searchInput.addEventListener('input', function () {
+                const filter = searchInput.value.toLowerCase().trim();
+                const cards = document.getElementsByClassName('message-card');
+                let foundCount = 0;
 
-            for (let card of cards) {
-                const content = card.getAttribute('data-content');
-                if (content.includes(filter)) {
-                    card.style.display = 'flex';
-                    foundCount++;
-                } else {
-                    card.style.display = 'none';
+                for (let card of cards) {
+                    const content = card.getAttribute('data-content');
+                    if (content.includes(filter)) {
+                        card.style.display = 'flex';
+                        foundCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
                 }
+
+                noResults.style.display = foundCount === 0 ? 'block' : 'none';
+            });
+
+            // Función para enviar respuesta real-time (vía DOM)
+            function postReply(btn) {
+                const card = btn.closest('.message-card');
+                const textarea = card.querySelector('textarea');
+                const text = textarea.value.trim();
+
+                if (text === '') return;
+
+                // Mostrar el icono de carga simulado
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    const repliesContainer = card.querySelector('.replies-container');
+                    const title = card.querySelector('.replies-title') || document.createElement('div');
+
+                    if (!card.querySelector('.replies-title')) {
+                        title.className = 'replies-title';
+                        title.innerHTML = '<i class="fas fa-comment-dots"></i> Respuestas en este hilo';
+                        repliesContainer.insertBefore(title, repliesContainer.firstChild);
+                    }
+
+                    const newReply = document.createElement('div');
+                    newReply.className = 'reply-item';
+                    newReply.style.animation = 'fadeIn 0.5s ease forwards';
+                    newReply.innerHTML = `
+                    <span class="reply-user">Tú (Invitado)</span>
+                    ${text}
+                `;
+
+                    // Insertar antes del botón de trigger
+                    const trigger = card.querySelector('.btn-reply-trigger');
+                    repliesContainer.insertBefore(newReply, trigger);
+
+                    // Reset box
+                    textarea.value = '';
+                    toggleReplyBox(btn, false);
+
+                    // Restaurar botón
+                    btn.innerHTML = 'Enviar';
+                    btn.disabled = false;
+                }, 800);
             }
 
-            noResults.style.display = foundCount === 0 ? 'block' : 'none';
-        });
-
-        // Función para mostrar/ocultar caja de respuesta
-        function toggleReplyBox(btn, show = true) {
-            const card = btn.closest('.message-card');
-            const box = card.querySelector('.inline-reply-box');
-            const trigger = card.querySelector('.btn-reply-trigger');
-
-            if (show) {
-                box.style.display = 'block';
-                trigger.style.display = 'none';
-                box.querySelector('textarea').focus();
-            } else {
-                box.style.display = 'none';
-                trigger.style.display = 'flex';
+            // Add fadeIn animation
+            const style = document.createElement('style');
+            style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
             }
-        }
-    </script>
+        `;
+            document.head.appendChild(style);
+        </script>
 </body>
 
 </html>

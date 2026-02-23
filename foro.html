@@ -96,9 +96,23 @@
 
         .countries-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-            gap: 20px;
-            padding: 20px 15px 60px;
+            grid-template-columns: repeat(3, 1fr);
+            /* Force 3 columns on desktop */
+            gap: 30px;
+            padding: 20px 0 60px;
+        }
+
+        @media (max-width: 992px) {
+            .countries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .countries-grid {
+                grid-template-columns: 1fr;
+                padding: 20px 15px 60px;
+            }
         }
 
         @media (max-width: 768px) {

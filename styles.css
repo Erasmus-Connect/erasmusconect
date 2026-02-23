@@ -60,6 +60,8 @@ header {
     margin: 0 auto;
     padding: 0 40px;
     width: 100%;
+    display: block;
+    /* Ensure it's not flex by default */
 }
 
 header .container {
@@ -293,8 +295,21 @@ nav a.active {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    /* Force 3 columns on desktop */
     gap: 30px;
+}
+
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (min-width: 900px) {
