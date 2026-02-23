@@ -97,6 +97,18 @@
             border-top: 6px solid var(--us-red);
             transition: var(--transition);
             position: relative;
+            z-index: 5;
+        }
+
+        .btn-reply-trigger,
+        .btn-send-mini,
+        .btn-cancel-mini,
+        .btn-modal-submit,
+        .btn-modal-cancel,
+        .new-thread-btn {
+            position: relative;
+            z-index: 10 !important;
+            cursor: pointer !important;
         }
 
         .message-card:hover {
@@ -523,46 +535,52 @@
     <!-- Load Data -->
     <script src="foro-data.js"></script>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const u = urlParams.get('u');
-        let id = urlParams.get('id');
+        // Global Error Catcher for easier debugging (Simulated)
+        window.onerror = function (msg, url, line) {
+            console.error('FORUM ERROR:', msg, 'at', line);
+            return false;
+        };
 
-        const grid = document.getElementById('messagesGrid');
+        // Initialize data and UI
+        function initForum() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const u = urlParams.get('u');
+            let id = urlParams.get('id');
+            const grid = document.getElementById('messagesGrid');
 
-        // Robust check for data
-        if (typeof window.forumData === 'undefined') {
-            console.error('ERROR: foro-data.js no se ha cargado correctamente.');
-        }
+            if (typeof window.forumData === 'undefined') {
+                console.error('ERROR: foro-data.js not loaded');
+                return;
+            }
 
-        let currentForum = null;
-        if (id && window.forumData) {
-            currentForum = window.forumData[id];
-            if (!currentForum) {
+            let currentForum = window.forumData[id];
+            if (!currentForum && id) {
                 const normalizedId = id.replace(/ /g, '+');
                 currentForum = window.forumData[normalizedId];
             }
+
+            if (!currentForum) {
+                currentForum = typeof getDefaultMessages === 'function' ? getDefaultMessages(u || 'Destino') : {
+                    title: 'Foro: ' + (u || 'Destino'),
+                    messages: [{ user: 'Admin', avatar: 'A', date: 'Hoy', body: 'Bienvenido.', replies: [] }]
+                };
+            }
+
+            window.currentForum = currentForum;
+            document.getElementById('forumTitle').innerText = currentForum.title;
+            if (document.getElementById('forumTitleHero')) {
+                document.getElementById('forumTitleHero').innerText = currentForum.title;
+            }
+            document.title = currentForum.title + ' - erasmusconect';
+
+            renderMessages();
         }
 
-        if (!currentForum) {
-            currentForum = typeof getDefaultMessages === 'function' ? getDefaultMessages(u || 'Destino Desconocido') : {
-                title: 'Foro: ' + (u || 'Destino'),
-                messages: [{ user: 'Admin', avatar: 'A', date: 'Hoy', body: 'Bienvenido al foro.', replies: [] }]
-            };
-        }
-
-        // Update titles
-        document.getElementById('forumTitle').innerText = currentForum.title;
-        if (document.getElementById('forumTitleHero')) {
-            document.getElementById('forumTitleHero').innerText = currentForum.title;
-        }
-        document.title = currentForum.title + ' - erasmusconect';
-
-        // Función para mostrar/ocultar caja de respuesta
-        function toggleReplyBox(btn, show = true) {
+        // Expose functions to window scope for reliable onclick access
+        window.toggleReplyBox = function (btn, show = true) {
             const card = btn.closest('.message-card');
             const box = card.querySelector('.inline-reply-box');
             const trigger = card.querySelector('.btn-reply-trigger');
-
             if (show) {
                 box.style.display = 'block';
                 trigger.style.display = 'none';
@@ -571,28 +589,33 @@
                 box.style.display = 'none';
                 trigger.style.display = 'flex';
             }
-        }
+        };
 
-        // Render messages
-        function renderMessages() {
+        window.renderMessages = function () {
+            const grid = document.getElementById('messagesGrid');
+            const forum = window.currentForum;
             grid.innerHTML = '';
-            currentForum.messages.forEach((msg, index) => {
+
+            forum.messages.forEach((msg, index) => {
                 const card = document.createElement('div');
                 card.className = 'message-card' + (msg.badge === 'RESPUESTA' || msg.badge === 'CONSEJO' ? ' is-answer' : '');
-                card.setAttribute('data-content', msg.body.toLowerCase() + ' ' + msg.user.toLowerCase());
+                card.setAttribute('data-content', ((msg.body || '') + ' ' + (msg.user || '')).toLowerCase());
 
                 let repliesHtml = '';
-                if (msg.replies && msg.replies.length > 0) {
-                    repliesHtml = `
+                const hasReplies = msg.replies && msg.replies.length > 0;
+
+                repliesHtml = `
                     <div class="replies-container">
-                        <div class="replies-title"><i class="fas fa-comment-dots"></i> Respuestas en este hilo</div>
-                        ${msg.replies.map(r => `
+                        ${hasReplies ? `<div class="replies-title"><i class="fas fa-comment-dots"></i> Respuestas en este hilo</div>` : ''}
+                        ${hasReplies ? msg.replies.map(r => `
                             <div class="reply-item">
                                 <span class="reply-user">${r.user}</span>
                                 ${r.text}
                             </div>
-                        `).join('')}
-                        <button class="btn-reply-trigger" onclick="toggleReplyBox(this)"><i class="fas fa-reply"></i> Responder a este hilo</button>
+                        `).join('') : ''}
+                        <button class="btn-reply-trigger" onclick="toggleReplyBox(this)">
+                            <i class="fas fa-reply"></i> ${hasReplies ? 'Responder a este hilo' : 'Sé el primero en responder'}
+                        </button>
                         <div class="inline-reply-box">
                             <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
                             <div class="btn-group">
@@ -602,50 +625,33 @@
                         </div>
                     </div>
                 `;
-                } else {
-                    repliesHtml = `
-                    <div class="replies-container">
-                        <button class="btn-reply-trigger" onclick="toggleReplyBox(this)"><i class="fas fa-reply"></i> Sé el primero en responder</button>
-                        <div class="inline-reply-box">
-                            <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
-                            <div class="btn-group">
-                                <button class="btn-cancel-mini" onclick="toggleReplyBox(this, false)">Cancelar</button>
-                                <button class="btn-send-mini" onclick="postReply(this)">Enviar</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                }
 
                 card.innerHTML = `
                 <div class="msg-header">
-                    <div class="msg-avatar">${msg.avatar}</div>
+                    <div class="msg-avatar">${msg.avatar || '?'}</div>
                     <div class="msg-info">
-                        <span class="msg-user">${msg.user}</span>
-                        <span class="msg-date">${msg.date}</span>
-                        <br><span class="msg-badge ${msg.badgeClass}">${msg.badge}</span>
+                        <span class="msg-user">${msg.user || 'Usuario'}</span>
+                        <span class="msg-date">${msg.date || 'Reciente'}</span>
+                        <br><span class="msg-badge ${msg.badgeClass || ''}">${msg.badge || ''}</span>
                     </div>
                 </div>
-                <div class="msg-body">${msg.body}</div>
+                <div class="msg-body">${msg.body || ''}</div>
                 ${repliesHtml}
             `;
                 grid.appendChild(card);
             });
-        }
+        };
 
-        renderMessages();
-
-        // Modal Functions
-        function openNewQuestionModal() {
+        window.openNewQuestionModal = function () {
             document.getElementById('newQuestionModal').style.display = 'flex';
             document.getElementById('newQuestionName').focus();
-        }
+        };
 
-        function closeNewQuestionModal() {
+        window.closeNewQuestionModal = function () {
             document.getElementById('newQuestionModal').style.display = 'none';
-        }
+        };
 
-        function submitNewQuestion() {
+        window.submitNewQuestion = function () {
             const nameInput = document.getElementById('newQuestionName');
             const bodyInput = document.getElementById('newQuestionBody');
             const btn = document.getElementById('btnSubmitQuestion');
@@ -653,7 +659,7 @@
             const name = nameInput.value.trim();
             const body = bodyInput.value.trim();
 
-            if (name === '' || body === '') {
+            if (!name || !body) {
                 alert('Por favor, rellena todos los campos.');
                 return;
             }
@@ -672,24 +678,57 @@
                     replies: []
                 };
 
-                currentForum.messages.unshift(newMessage);
-                renderMessages();
+                window.currentForum.messages.unshift(newMessage);
+                window.renderMessages();
 
                 nameInput.value = '';
                 bodyInput.value = '';
                 btn.innerHTML = 'Publicar Pregunta';
                 btn.disabled = false;
-                closeNewQuestionModal();
+                window.closeNewQuestionModal();
                 window.scrollTo({ top: 300, behavior: 'smooth' });
             }, 1000);
-        }
+        };
 
-        // Buscador de palabras clave
-        const searchInput = document.getElementById('keywordSearch');
-        const noResults = document.getElementById('noMessages');
+        window.postReply = function (btn) {
+            const card = btn.closest('.message-card');
+            const textarea = card.querySelector('textarea');
+            const text = textarea.value.trim();
 
-        searchInput.addEventListener('input', function () {
-            const filter = searchInput.value.toLowerCase().trim();
+            if (!text) return;
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                const repliesContainer = card.querySelector('.replies-container');
+                let title = card.querySelector('.replies-title');
+
+                if (!title) {
+                    title = document.createElement('div');
+                    title.className = 'replies-title';
+                    title.innerHTML = '<i class="fas fa-comment-dots"></i> Respuestas en este hilo';
+                    repliesContainer.insertBefore(title, repliesContainer.firstChild);
+                }
+
+                const newReply = document.createElement('div');
+                newReply.className = 'reply-item';
+                newReply.style.animation = 'fadeIn 0.5s ease forwards';
+                newReply.innerHTML = `<span class="reply-user">Tú (Invitado)</span> ${text}`;
+
+                const trigger = card.querySelector('.btn-reply-trigger');
+                repliesContainer.insertBefore(newReply, trigger);
+
+                textarea.value = '';
+                window.toggleReplyBox(btn, false);
+                btn.innerHTML = 'Enviar';
+                btn.disabled = false;
+            }, 800);
+        };
+
+        // Keyword search
+        document.getElementById('keywordSearch').addEventListener('input', function () {
+            const filter = this.value.toLowerCase().trim();
             const cards = document.getElementsByClassName('message-card');
             let foundCount = 0;
 
@@ -702,49 +741,17 @@
                     card.style.display = 'none';
                 }
             }
-            noResults.style.display = foundCount === 0 ? 'block' : 'none';
+            document.getElementById('noMessages').style.display = foundCount === 0 ? 'block' : 'none';
         });
 
-        // Función para enviar respuesta real-time
-        function postReply(btn) {
-            const card = btn.closest('.message-card');
-            const textarea = card.querySelector('textarea');
-            const text = textarea.value.trim();
-
-            if (text === '') return;
-
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                const repliesContainer = card.querySelector('.replies-container');
-                const title = card.querySelector('.replies-title') || document.createElement('div');
-
-                if (!card.querySelector('.replies-title')) {
-                    title.className = 'replies-title';
-                    title.innerHTML = '<i class="fas fa-comment-dots"></i> Respuestas en este hilo';
-                    repliesContainer.insertBefore(title, repliesContainer.firstChild);
-                }
-
-                const newReply = document.createElement('div');
-                newReply.className = 'reply-item';
-                newReply.style.animation = 'fadeIn 0.5s ease forwards';
-                newReply.innerHTML = `
-                    <span class="reply-user">Tú (Invitado)</span>
-                    ${text}
-                `;
-
-                const trigger = card.querySelector('.btn-reply-trigger');
-                repliesContainer.insertBefore(newReply, trigger);
-
-                textarea.value = '';
-                toggleReplyBox(btn, false);
-                btn.innerHTML = 'Enviar';
-                btn.disabled = false;
-            }, 800);
+        // Start initialization
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initForum);
+        } else {
+            initForum();
         }
 
-        // Estilos de animación
+        // Animation styles
         const style = document.createElement('style');
         style.textContent = `
             @keyframes fadeIn {
