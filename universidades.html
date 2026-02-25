@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidades - Erasmus Connect</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container"><a href="index.html" class="logo">
+                <img src="Logo.png" alt="Erasmus Connect Logo" class="logo-img">
+                Erasmus Connect
+            </a>
+            <input type="checkbox" id="nav-check"><label for="nav-check"
+                class="menu-toggle"><span></span><span></span><span></span></label>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="universidades.html" class="active">Universidades</a></li>
+                    <li><a href="foro.html">Foro</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="contact-hero"
+        style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756ebafe3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+        <div class="container">
+            <h1>Instituciones Colaboradoras</h1>
+            <p>Selecciona tu universidad para acceder a las guías de destinos y convalidaciones.</p>
+        </div>
+    </div>
+
+    <div class="container" style="padding: 40px 0;">
+        <div class="search-bar-container">
+            <input type="text" id="uniSearch" placeholder="Busca tu universidad (ej: Sevilla, Madrid...)"
+                onkeyup="filterUniversities()">
+        </div>
+
+        <div class="uni-grid" id="uniGrid">
+            <!-- Universidad de Sevilla -->
+            <a href="universidad-sevilla.html" class="uni-card" data-name="Universidad de Sevilla US">
+                <img src="logo US.png" alt="Logo US">
+                <h3>Universidad de Sevilla</h3>
+            </a>
+            <!-- Placeholders for future scaling -->
+            <a href="#" class="uni-card" style="opacity: 0.5; cursor: not-allowed;"
+                data-name="Universidad de Málaga UMA">
+                <i class="fas fa-university fa-4x" style="color: #ddd; margin-bottom: 20px;"></i>
+                <h3>Universidad de Málaga</h3>
+                <p>Próximamente...</p>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function filterUniversities() {
+            const input = document.getElementById('uniSearch');
+            const filter = input.value.toLowerCase();
+            const grid = document.getElementById('uniGrid');
+            const cards = grid.getElementsByClassName('uni-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const name = cards[i].getAttribute('data-name').toLowerCase();
+                if (name.indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Erasmus Connect - Proyecto Estudiantes Universidad de Sevilla</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

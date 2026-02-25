@@ -52,4 +52,4 @@ Este proyecto no es solo una página web; es una propuesta de mejora para toda l
 **Acceso al Proyecto**: [https://Erasmus-Connect.github.io/erasmusconect/](https://Erasmus-Connect.github.io/erasmusconect/)
 
 ---
-© 2024 erasmusconect - Memoria Técnica de Proyecto | Versión 0
+© 2026 erasmusconect - Memoria Técnica de Proyecto | Versión 0

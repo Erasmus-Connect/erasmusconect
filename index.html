@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erasmus Connect - Universidad de Sevilla</title>
+    <title>Erasmus Connect - Portal de Movilidad</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,16 +12,15 @@
 <body>
     <header>
         <div class="container"><a href="index.html" class="logo">
-                <i class="fas fa-university"></i>
-                erasmusconect <span>Universidad de Sevilla</span>
+                <img src="Logo.png" alt="Erasmus Connect Logo" class="logo-img">
+                Erasmus Connect
             </a>
             <input type="checkbox" id="nav-check"><label for="nav-check"
                 class="menu-toggle"><span></span><span></span><span></span></label>
             <nav>
                 <ul>
                     <li><a href="index.html" class="active">Inicio</a></li>
-                    <li><a href="destinos.html">Destinos</a></li>
-                    <li><a href="convalidaciones.html">Convalidaciones</a></li>
+                    <li><a href="universidades.html">Universidades</a></li>
                     <li><a href="foro.html">Foro</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
                 </ul>
@@ -29,69 +28,55 @@
         </div>
     </header>
 
-    <section class="hero" style="padding: 60px 0 40px 0;">
+    <section class="portal-hero" style="padding: 40px 0; margin-bottom: 30px;">
         <div class="container">
-            <h1 style="text-align: left; margin-left: 20px; font-size: 2.8rem; margin-bottom: 30px;">Tu Aventura Erasmus
-                Empieza Aquí</h1>
-
-
+            <h1 style="font-size: 2.8rem;">Bienvenido a Erasmus Connect</h1>
+            <p>Tu plataforma centralizada para gestionar tu movilidad internacional.</p>
         </div>
     </section>
 
-    <section class="features">
-        <div class="container">
-            <div class="destinos-grid">
-                <a href="destinos.html" class="category-card">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h3>Destinos</h3>
-                    <p>Consulta las plazas disponibles, universidades socias y descarga los listados PDF.</p>
-                </a>
-                <a href="convalidaciones.html" class="category-card">
-                    <i class="fas fa-file-signature"></i>
-                    <h3>Convalidaciones</h3>
-                    <p>Consulta el historial de asignaturas validadas por otros alumnos en años anteriores.</p>
-                </a>
-                <a href="foro.html" class="category-card">
+    <div class="container">
+        <div class="portal-grid">
+            <!-- Universidades -->
+            <a href="universidades.html" class="portal-card">
+                <div class="card-img card-img-uni">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Universidades</h3>
+                    <p>Explora las instituciones con las que trabajamos y consulta sus destinos.</p>
+                </div>
+            </a>
+
+            <!-- Foro -->
+            <a href="foro.html" class="portal-card">
+                <div class="card-img card-img-forum">
                     <i class="fas fa-comments"></i>
-                    <h3>Foro Estudiantes</h3>
-                    <p>Resuelve tus dudas, contacta con veteranos y encuentra compañeros para tu viaje.</p>
-                </a>
-                <a href="plazos.html" class="category-card">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h3>Plazos</h3>
-                    <p>Consulta el calendario oficial: fechas de solicitud, listados y adjudicaciones.</p>
-                </a>
-                <a href="financiacion.html" class="category-card">
-                    <i class="fas fa-coins"></i>
-                    <h3>Financiación</h3>
-                    <p>Consulta las becas disponibles: Erasmus+, Junta de Andalucía, Santander y Plan Propio.</p>
-                </a>
-                <a href="reunion.html" class="category-card">
-                    <i class="fas fa-info-circle"></i>
-                    <h3>Reunión Informativa</h3>
-                    <p>Información sobre las sesiones informativas para nuevos estudiantes de movilidad.</p>
-                </a>
-                <a href="santander.html" class="category-card">
-                    <i class="fas fa-piggy-bank"></i>
-                    <h3>Becas Santander</h3>
-                    <p>Detalles sobre las ayudas adicionales del Banco Santander para estudiantes Erasmus.</p>
-                </a>
-                <a href="https://www.us.es/sites/default/files/becas-y-ayudas/becas-movilidad/propias/carta%20del%20estudiante%20erasmus_04112024.pdf"
-                    class="category-card" target="_blank">
-                    <i class="fas fa-id-card"></i>
-                    <h3>Carta del Estudiante</h3>
-                    <p>Descarga la Carta del Estudiante Erasmus con tus derechos y obligaciones.</p>
-                </a>
-            </div>
+                </div>
+                <div class="card-content">
+                    <h3>Comunidad y Foro</h3>
+                    <p>Habla con otros estudiantes y comparte experiencias reales.</p>
+                </div>
+            </a>
+
+            <!-- Contacto -->
+            <a href="contacto.html" class="portal-card">
+                <div class="card-img card-img-contact">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Soporte y Contacto</h3>
+                    <p>¿Tienes dudas? Nuestro equipo está listo para ayudarte.</p>
+                </div>
+            </a>
         </div>
-    </section>
+    </div>
 
     <footer>
         <div class="container">
-            <p>© 2024 erasmusconect - ETSI Sevilla. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Erasmus Connect - Proyecto Estudiantes Universidad de Sevilla</p>
         </div>
     </footer>
-
     <script src="script.js"></script>
 </body>
 

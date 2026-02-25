@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoria Descriptiva - Erasmus Connect US</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --us-red: #A41034;
+            --us-gold: #C59B48;
+            --us-dark: #333333;
+            --us-light: #F4F4F4;
+            --white: #FFFFFF;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--us-dark);
+            background-color: #f0f0f0;
+            line-height: 1.6;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .document-page {
+            background: var(--white);
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            padding: 25mm 20mm;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            box-sizing: border-box;
+            page-break-after: always;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .document-page {
+                margin: 0 auto;
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+                padding: 25mm 20mm;
+            }
+
+            .no-print-zone {
+                display: none;
+            }
+        }
+
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: calc(297mm - 50mm);
+        }
+
+        .cover-header {
+            border-bottom: 4px solid var(--us-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .cover-logo {
+            font-size: 5rem;
+            color: var(--us-red);
+            margin-bottom: 20px;
+        }
+
+        .cover h1 {
+            font-size: 2.5rem;
+            color: var(--us-red);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cover h2 {
+            font-size: 1.8rem;
+            color: var(--us-dark);
+            margin: 10px 0 30px 0;
+            font-weight: normal;
+        }
+
+        .cover-version {
+            background: var(--us-gold);
+            color: var(--us-dark);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 50px;
+            display: inline-block;
+        }
+
+        .cover-footer {
+            margin-top: auto;
+            border-top: 2px solid var(--us-gold);
+            padding-top: 20px;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--us-red);
+        }
+
+        h1 {
+            border-bottom: 2px solid var(--us-gold);
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        h2 {
+            margin-top: 30px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 24px;
+            background: var(--us-gold);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin-left: 20px;
+            border-left: 3px solid var(--us-gold);
+            padding-left: 10px;
+            margin-top: 20px;
+        }
+
+        p {
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .url-box {
+            background: var(--us-light);
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .url-box a {
+            color: var(--us-red);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #999;
+            text-align: center;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .no-print-zone {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-print {
+            background: var(--us-red);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print-zone">
+        <button onclick="window.print()" class="btn-print">
+            <i class="fas fa-print"></i> Generar PDF Final
+        </button>
+    </div>
+
+    <!-- PAGE 1: COVER -->
+    <div class="document-page">
+        <div class="cover">
+            <div class="cover-header">
+                <i class="fas fa- university cover-logo"></i>
+                <h1>Memoria Descriptiva</h1>
+                <h2>Erasmus Connect US</h2>
+                <div class="cover-version">Versión v0</div>
+            </div>
+
+            <div style="margin: 40px 0;">
+                <p style="text-align: center; font-style: italic; color: #555; max-width: 80%; margin: 0 auto;">
+                    "Digitalizando la movilidad internacional, <br>de estudiantes para estudiantes."
+                </p>
+            </div>
+
+            <div class="cover-footer">
+                <p>Universidad de Sevilla | 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: INTRODUCCIÓN -->
+    <div class="document-page">
+        <h2>1. Introducción</h2>
+        <p>
+            Erasmus Connect US es una plataforma digital concebida y desarrollada por dos estudiantes de la
+            Universidad de Sevilla, uno de los cuales se encuentra actualmente realizando una estancia de movilidad
+            internacional. El proyecto surge a partir de la detección de diversas carencias en los actuales canales de
+            información disponibles para el estudiantado participante en programas de movilidad, especialmente en lo
+            relativo a la actualización de contenidos, la fragmentación de la información y la limitada interacción
+            entre
+            estudiantes.
+        </p>
+        <p>
+            Ante esta situación, se plantea el diseño e implementación de una plataforma web integral que centralice,
+            estructure y modernice el acceso a la información relativa a la movilidad internacional. Asimismo, el
+            proyecto incorpora como elemento diferencial un foro comunitario integrado, orientado a facilitar el
+            intercambio de información práctica entre estudiantes, promoviendo la generación de conocimiento
+            colectivo de carácter persistente y accesible en el tiempo.
+        </p>
+        <p>
+            La presente versión del proyecto corresponde a una versión inicial (v0), concebida como prototipo
+            funcional susceptible de ser ampliado, adaptado y optimizado en futuras iteraciones conforme a las
+            necesidades institucionales que se identifiquen.
+        </p>
+        <p>
+            En esta fase inicial, la plataforma integra los 101 destinos correspondientes a la Escuela Técnica Superior
+            de Ingeniería (ETSI), al ser esta la única unidad académica para la cual se dispone actualmente de
+            información histórica estructurada en materia de convalidaciones. El planteamiento del sistema, no
+            obstante, es plenamente escalable y extensible al conjunto de centros de la Universidad de Sevilla,
+            siempre que se disponga de la información necesaria.
+        </p>
+    </div>
+
+    <!-- PAGE 3: ARQUITECTURA -->
+    <div class="document-page">
+        <h2>2. Desglose del Portal (Arquitectura de Ventanas)</h2>
+        <p>
+            La plataforma se estructura en distintos módulos funcionales, diseñados para ofrecer una experiencia de
+            usuario coherente, intuitiva y orientada a las principales necesidades del estudiantado de movilidad.
+        </p>
+
+        <h3>2.1. Página de Inicio</h3>
+        <p>
+            Espacio de acceso principal al portal, organizado mediante elementos visuales interactivos que permiten
+            al usuario dirigirse de forma directa a los distintos módulos informativos y funcionales del sistema.
+        </p>
+
+        <h3>2.2. Buscador de Destinos</h3>
+        <p>
+            Buscador estructurado por áreas geográficas y programas de movilidad (Erasmus+, programas no
+            Erasmus, Asia, entre otros), que permite localizar de manera ágil los destinos disponibles en la
+            Universidad de Sevilla.
+        </p>
+
+        <h3>2.3. Hub de Convalidaciones</h3>
+        <p>
+            Repositorio estructurado de históricos de convalidaciones correspondientes a la ETSI. Este módulo facilita
+            la toma de decisiones académicas informadas por parte del estudiantado, al permitir la consulta de
+            precedentes de reconocimiento académico. Actualmente, el alcance del repositorio se limita a la ETSI por
+            razones de disponibilidad de datos, si bien la arquitectura del sistema permite su ampliación futura al
+            conjunto de facultades y escuelas de la Universidad de Sevilla.
+        </p>
+    </div>
+
+    <!-- PAGE 4: FORO Y CONTACTO -->
+    <div class="document-page">
+        <h3>2.4. Foro Comunitario</h3>
+        <p>
+            El foro comunitario constituye la principal innovación del proyecto, al introducir un espacio
+            institucionalizado de intercambio de experiencias entre estudiantes de movilidad. El sistema se encuentra
+            organizado por países y ciudades de destino (en la presente versión, para los destinos de la ETSI),
+            permitiendo la creación de hilos temáticos relacionados con aspectos académicos, administrativos,
+            logísticos y sociales.
+        </p>
+        <p>
+            Los contenidos generados por los usuarios se almacenan en una infraestructura en la nube, garantizando
+            su persistencia en el tiempo. El sistema permite la edición y eliminación de mensajes por parte de sus
+            autores, así como la moderación por parte de los administradores de la plataforma, con el fin de
+            garantizar un uso adecuado del servicio.
+        </p>
+        <p>
+            El valor añadido del foro se incrementa de manera proporcional al grado de adopción por parte de la
+            comunidad universitaria, constituyéndose progresivamente en un repositorio de conocimiento práctico de
+            alto valor para futuras cohortes de estudiantes.
+        </p>
+
+        <h3>2.5. Ventana de Contacto</h3>
+        <p>
+            Formulario de contacto diseñado para su futura integración con los servicios institucionales competentes
+            en materia de movilidad internacional, con el objetivo de canalizar consultas y solicitudes de información
+            de manera directa y estructurada.
+        </p>
+
+        <div class="footer-note" style="margin-top: 100px;">
+            Universidad de Sevilla | Erasmus Connect US
+        </div>
+    </div>
+
+    <!-- PAGE 5: FUTURO Y TÉCNICO -->
+    <div class="document-page">
+        <h2>3. Líneas de Desarrollo Futuro</h2>
+        <p>
+            El proyecto Erasmus Connect US se concibe como una herramienta evolutiva y adaptable a las
+            necesidades institucionales. Entre las principales líneas de desarrollo futuro se contempla la ampliación
+            del número de destinos y facultades integradas, la incorporación de información oficial adicional, la
+            adaptación funcional conforme a los requerimientos de los órganos competentes, así como el diseño e
+            implementación de una estrategia de difusión y visibilidad institucional (branding, presencia en redes
+            sociales, campañas informativas en centros universitarios).
+        </p>
+
+        <h2>4. Especificaciones Técnicas</h2>
+        <p>
+            La plataforma ha sido desarrollada conforme a estándares tecnológicos actuales en el ámbito del
+            desarrollo web. El sistema se encuentra desplegado mediante un servicio de alojamiento web profesional,
+            con una infraestructura backend basada en bases de datos relacionales en la nube que permite la
+            persistencia y actualización en tiempo real de la información. El diseño de la interfaz es plenamente
+            responsive, garantizando su correcta visualización y uso tanto en dispositivos móviles como en equipos
+            de escritorio.
+        </p>
+    </div>
+
+    <!-- PAGE 6: CONCLUSIÓN -->
+    <div class="document-page">
+        <h2>5. Conclusión y Visión Institucional</h2>
+        <p>
+            Erasmus Connect US se presenta como una propuesta de herramienta digital orientada a la mejora de los
+            procesos de información, acompañamiento y preparación del estudiantado participante en programas de
+            movilidad internacional de la Universidad de Sevilla. El proyecto aspira a ser evaluado como potencial
+            recurso institucional de apoyo, contribuyendo a la modernización de los canales de comunicación y al
+            fortalecimiento de la experiencia académica y social de la comunidad universitaria internacional.
+        </p>
+
+        <div class="url-box">
+            <p>Accede a la plataforma oficial:</p>
+            <a href="https://erasmus-connect.github.io/Erasmus Connect/index.html"
+                target="_blank">https://erasmus-connect.github.io/Erasmus Connect/index.html</a>
+        </div>
+
+        <p style="margin-top: 30px; font-size: 0.9rem;">
+            <em>La plataforma ha sido diseñada para su utilización tanto en entorno web de escritorio como en
+                dispositivos
+                móviles, garantizando la accesibilidad y usabilidad en contextos de uso reales.</em>
+        </p>
+
+        <div class="footer-note">
+            © 2026 Erasmus Connect US
+        </div>
+    </div>
+
+</body>
+
+</html>
