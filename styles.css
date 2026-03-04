@@ -96,12 +96,16 @@ header .container {
 }
 
 .logo-img {
-    height: 60px;
-    width: 60px;
-    object-fit: cover;
+    height: 75px;
+    width: 75px;
+    object-fit: contain;
     border-radius: 50%;
-    border: 2px solid var(--white);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--white);
+    background-color: var(--white);
+    padding: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: block;
+    transition: var(--transition);
 }
 
 .logo span {
